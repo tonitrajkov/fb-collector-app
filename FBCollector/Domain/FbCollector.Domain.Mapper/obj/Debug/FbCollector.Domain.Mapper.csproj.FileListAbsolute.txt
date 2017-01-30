@@ -1,0 +1,9 @@
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\bin\Debug\FbCollector.Domain.Mapper.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\bin\Debug\FbCollector.Domain.Mapper.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\obj\Debug\FbCollector.Domain.Mapper.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\obj\Debug\FbCollector.Domain.Mapper.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\obj\Debug\FbCollector.Domain.Mapper.csprojResolveAssemblyReference.cache
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\bin\Debug\FbCollector.Domain.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\bin\Debug\FbCollector.Models.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\bin\Debug\FbCollector.Domain.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Domain.Mapper\bin\Debug\FbCollector.Models.pdb

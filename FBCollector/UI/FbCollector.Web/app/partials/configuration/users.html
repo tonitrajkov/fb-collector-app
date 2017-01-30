@@ -1,0 +1,115 @@
+﻿<md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+        <span>{{"USERS_TAB_LABEL" | translate}}</span>
+
+        <span flex></span>
+
+        <md-button class="md-icon-button" ng-click="showFilters = !showFilters">
+            <md-tooltip md-direction="bottom">
+                {{"SHOW_FILTERS_LABEL" | translate}}
+            </md-tooltip>
+            <ng-md-icon icon="filter_list" style="fill: #868686" size="24"></ng-md-icon>
+        </md-button>
+
+        <md-button class="md-icon-button" ng-click="openUserModal($event, null)">
+            <md-tooltip md-direction="bottom">
+                {{"ADD_USER_LABEL" | translate}}
+            </md-tooltip>
+            <ng-md-icon icon="add" style="fill: #868686" size="24"></ng-md-icon>
+        </md-button>
+    </div>
+    <div class="md-toolbar-tools"
+         style="border-top: 1px solid #E6E6E6; font-size: 15px; "
+         ng-show="showFilters">
+        <span>{{"SEARCH_FILTERS" | translate}}</span>
+
+        <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px; ">
+            <input ng-model="query.SearchText" style="min-width: 300px; margin-top: 24px"
+                   ng-model-options="{ debounce: 300 }" placeholder="{{searchTextLabel}}">
+        </md-input-container>
+
+        <md-input-container>
+            <md-select ng-model="query.Role" style="min-width: 140px">
+                <md-option ng-value="null"><em>{{"ALL_ROLES_LABEL" | translate}}</em></md-option>
+                <md-option ng-value="role" ng-repeat="role in userRoles">{{role.Title}}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-switch ng-model="query.Active" aria-label="Active" style="padding-left: 20px">
+            <span ng-if="query.Active == null">{{"ALL_USERS" | translate}}</span>
+            <span ng-if="query.Active == true">{{"ACTIVE_USERS" | translate}}</span>
+            <span ng-if="query.Active == false">{{"INACTIVE_USERS" | translate}}</span>
+        </md-switch>
+
+        <span flex></span>
+
+        <md-button class="md-icon-button" ng-click="reloadTable()">
+            <md-tooltip md-direction="bottom">
+                {{"RESET_FILTERS_LABEL" | translate}}
+            </md-tooltip>
+            <ng-md-icon icon="refresh" style="fill: #868686" size="24"></ng-md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<md-table-container>
+    <table data-md-table md-progress="promise">
+        <thead ng-if="!options.decapitate" md-head md-on-reorder="onReorder">
+            <tr md-row>
+                <th md-column style="width: 1%"></th>
+                <th md-column style="width: 1%"><span>{{"USERNAME_LABEL" | translate}}</span></th>
+                <th md-column><span>{{"FULLNAME_LABEL" | translate}}</span></th>
+                <th md-column><span>{{"EMAIL_LABEL" | translate}}</span></th>
+                <th md-column><span>{{"ROLES_LABEL" | translate}}</span></th>
+                <th md-column style="width: 1%"><span>{{"ACTIONS_LABEL" | translate}}</span></th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row data-ng-repeat="user in users">
+                <td md-cell style="width: 1%">
+                    <div class="no-img-box" ng-if="!user.ProfilePicture">
+                        <ng-md-icon icon="account_circle" style="fill: #868686" size="48"></ng-md-icon>
+                    </div>
+                    <div class="profile-img-box" ng-if="user.ProfilePicture">
+                        <img ng-src="{{user.ProfilePicture}}" />
+                    </div>
+                </td>
+                <td md-cell style="width: 1%">{{user.UserName}}</td>
+                <td md-cell>{{user.FullName}}</td>
+                <td md-cell>{{user.Email}}</td>
+                <td md-cell>
+                    <span ng-if="user.Roles" ng-repeat="role in user.Roles">{{role.Title}}{{$last ? '' : ', '}}</span>
+                    <span ng-if="!user.Roles"> - </span>
+                </td>
+                <td md-cell style="width: 1%">
+                    <table>
+                        <tr>
+                            <td>
+                                <md-button class="md-icon-button" ng-click="openUserModal($event, user)">
+                                    <md-tooltip md-direction="bottom">
+                                        {{"EDIT_USER_LABEL" | translate}}
+                                    </md-tooltip>
+                                    <ng-md-icon icon="edit" style="fill: #868686"></ng-md-icon>
+                                </md-button>
+                            </td>
+                            <td>
+                                <md-switch ng-model="user.Active" aria-label="Switch" ng-change="onChangeSwitch(user)">
+                               
+                                 </md-switch>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<data-md-table-pagination md-limit="query.ItemsPerPage"
+                          md-limit-options="limitOptions"
+                          md-page="query.CurrentPage"
+                          md-total="{{totalRecords}}"
+                          md-on-paginate="onPaginate"
+                          md-page-select="options.pageSelect"
+                          md-boundary-links="options.boundaryLinks">
+</data-md-table-pagination>

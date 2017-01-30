@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="FbCollector.Domain"
+                   namespace="FbCollector.Domain" auto-import="false">
+
+  <class name="Role" table="Roles" schema="dbo" lazy="true" dynamic-update="true">
+
+    <id name="Id" column="Id" type="int" />
+
+    <property name="Title" access="field.camelcase-underscore">
+      <column name="Title" sql-type="nvarchar" length="100" not-null="true"/>
+    </property>
+
+  </class>
+
+</hibernate-mapping>

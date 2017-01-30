@@ -1,0 +1,7 @@
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Business\FbCollector.Intefraces\bin\Debug\FbCollector.Intefraces.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Business\FbCollector.Intefraces\bin\Debug\FbCollector.Intefraces.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Business\FbCollector.Intefraces\obj\Debug\FbCollector.Intefraces.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Business\FbCollector.Intefraces\obj\Debug\FbCollector.Intefraces.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Business\FbCollector.Intefraces\bin\Debug\FbCollector.Models.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Business\FbCollector.Intefraces\bin\Debug\FbCollector.Models.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Business\FbCollector.Intefraces\obj\Debug\FbCollector.Intefraces.csprojResolveAssemblyReference.cache

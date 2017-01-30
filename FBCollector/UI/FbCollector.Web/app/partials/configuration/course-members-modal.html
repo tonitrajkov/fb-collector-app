@@ -1,0 +1,59 @@
+﻿<md-dialog aria-label="Course Members Modal">
+    <form ng-cloak name="courseMembersForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="white-color">{{"COURSE_MEMBER_MODAL_TITLE" | translate}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        {{"CLOSE_TOASTER" | translate}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" style="height: 400px">
+                <md-input-container md-no-float class="md-block" style="padding: 0; ">
+                    <input ng-model="searchTxt"
+                           ng-model-options="{ debounce: 300 }"
+                           placeholder="{{searchTextLabel}}">
+                </md-input-container>
+                <div>
+                    <table class="table-full-width">
+                        <tr>
+                            <td>
+                                <md-checkbox aria-label="Select All"
+                                             ng-checked="isChecked()"
+                                             md-indeterminate="isIndeterminate()"
+                                             ng-click="toggleAll()"
+                                             style="margin-bottom: 4px">
+                                    <span ng-if="isChecked()">{{"SELECT_ALL" | translate}}</span>
+                                    <span ng-if="!isChecked()">{{"UNSELECT_ALL" | translate}}</span>
+                                </md-checkbox>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="item in items">
+                            <td style="padding-left: 24px">
+                                <md-checkbox style="margin-bottom: 1px"
+                                             ng-checked="exists(item, selected)"
+                                             ng-click="toggle(item, selected)">
+                                    {{ item.FullName }} {{'(' + item.UserName + ')'}}
+                                </md-checkbox>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary white-color" ng-click="confirm(courseMembersForm)">
+                {{"MODAL_CONFIRM_BUTTON" | translate}}
+            </md-button>
+            <md-button class="md-raised" ng-click="cancel()">
+                {{"MODAL_CANCEL_BUTTON" | translate}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

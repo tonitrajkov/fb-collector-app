@@ -1,0 +1,45 @@
+﻿<md-sidenav class="md-sidenav-left custom-sidenav"
+            md-component-id="left"
+            md-is-locked-open="$mdMedia('gt-sm')">
+    <div class="menu-wrappper">
+        <div class="profile-menu">
+            <a href="">
+                <div class="profile-pic">
+                    <img src="/Content/img/avatars/no-img.png" alt="" class="mCS_img_loaded">
+                    <!--<img ng-if="!userInfo.ProfilePicture" src="/Content/img/avatars/no-img.png" alt="" class="mCS_img_loaded">
+                    <img ng-if="userInfo.ProfilePicture" ng-src="{{userInfo.ProfilePicture}}" alt="" class="mCS_img_loaded">-->
+                </div>
+                <div class="profile-info">
+                    <table class="table-full-width">
+                        <tr>
+                            <td style="width: 99%">
+                                <!--<span>{{userInfo.FullName}}</span>-->
+                                <span>Toni trajkov</span>
+                            </td>
+                            <td style="width: 1%">
+                                <!--<ng-md-icon icon="arrow_drop_down" style="fill: white"></ng-md-icon>-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </div>
+        <ul class="main-menu">
+            <li>
+                <a href="" ui-sref="home">
+                    <ng-md-icon icon="home" style="fill: #4C4C4C" size="20"></ng-md-icon> <span>{{"HOME" | translate}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="" ui-sref="cfgUsers">
+                    <ng-md-icon icon="build" style="fill: #4C4C4C" size="20"></ng-md-icon> <span>{{"CONFIGURATION" | translate}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="logOut()">
+                    <ng-md-icon icon="power_settings_new" style="fill: #4C4C4C" size="20"></ng-md-icon> <span>{{"LOGOUT" | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</md-sidenav>

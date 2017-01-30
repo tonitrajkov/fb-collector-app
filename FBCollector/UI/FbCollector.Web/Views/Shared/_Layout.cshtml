@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    @{
+        //Ova mora vaka oti IE ne pocituva base tag ako ne e kompleten sose http i slicno
+        var baseHref = Request.Url.Scheme + Uri.SchemeDelimiter + Request.Url.Host + ":" + Request.Url.Port + Url.Content("~");
+
+    }
+    <script>
+        if (!window.location.origin) {
+            window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+        }
+
+        var baseUrl = '@baseHref';
+    </script>
+
+    <title>Facebook Data Collector</title>
+    <base href="@baseHref" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Angular Material style sheet -->
+    <link href="@string.Format("{0}", Url.Content("~/Content/angular-material/angular-material.min.css"))" rel="stylesheet" type="text/css" />
+    <link href="@string.Format("{0}", Url.Content("~/Content/angular-material/angular-material-icons.css"))" rel="stylesheet" type="text/css" />
+    <link href="@string.Format("{0}", Url.Content("~/Content/md-data-table/md-data-table.min.css"))" rel="stylesheet" type="text/css" />
+    <link href="@string.Format("{0}", Url.Content("~/Content/angular-material-calendar/angular-material-calendar.min.css"))" rel="stylesheet" type="text/css" />
+    <link href="@string.Format("{0}", Url.Content("~/Content/angular-material/mdPickers.min.css"))" rel="stylesheet" type="text/css" />
+    <link href="@string.Format("{0}", Url.Content("~/Content/ng-img-crop/ng-img-crop.css"))" rel="stylesheet" type="text/css" />
+    <link href="@string.Format("{0}", Url.Content("~/Content/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"))" rel="stylesheet" type="text/css" />
+    <link href="@string.Format("{0}", Url.Content("~/Content/app.css"))" rel="stylesheet" type="text/css" />
+    @*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">*@
+
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+<body ng-app="fbcApp" ng-cloak ng-controller="mainController" layout="row">
+
+    <header id="header">
+        <div ng-include="'app/partials/home/header.html'"></div>
+    </header>
+
+    <div layout="column" flex>
+        <div ng-include="'app/partials/home/side-nav.html'" class="custom-sidenav-wrapper"></div>
+
+        <md-content flex class="main-content" id="main-container">
+            @RenderBody()
+        </md-content>
+    </div>
+
+
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/jquery-2.1.4.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/moment.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angularjs/angular.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angularjs/angular-animate.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angularjs/angular-aria.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angularjs/angular-messages.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angularjs/angular-sanitize.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angular-material/angular-material.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angular-material/angular-material-icons.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angular-ui-router.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/md-data-table/md-data-table.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angular-material-calendar/angular-material-calendar.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angular-material/mdPickers.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/ng-img-crop/ng-img-crop.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/scrollbars.js"))"></script>
+
+    <script src="@string.Format("{0}", Url.Content("~/app/app/app.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/utils.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/infrastructure.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/filters.js"))"></script>
+
+    @*Directives*@
+    <script src="@string.Format("{0}", Url.Content("~/app/app/directives/breadcrumbs.directive.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/directives/uploadFile.directive.js"))"></script>
+
+    @*Home*@
+    <script src="@string.Format("{0}", Url.Content("~/app/app/home/main.service.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/home/main.controller.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/home/course.controller.js"))"></script>
+
+    @*Configuration*@
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/config.service.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/config.viewModels.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/config.controller.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/users.controller.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/userModal.controller.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/courses.controller.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/courseModal.controller.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/courseMembersModal.controller.js"))"></script>
+
+    <div id="fb-root"></div>
+</body>
+</html>

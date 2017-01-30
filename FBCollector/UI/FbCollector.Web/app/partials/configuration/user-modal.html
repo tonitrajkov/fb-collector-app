@@ -1,0 +1,120 @@
+﻿<md-dialog aria-label="User Modal">
+    <form ng-cloak name="userForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="white-color">{{modalTitle}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        {{"CLOSE_TOASTER" | translate}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-icon-float md-block"
+                                    ng-class="(model.Errors != null && model.Errors.FullName) ? 'md-input-invalid' : ''">
+                    <label>{{"FULLNAME_LABEL" | translate}}</label>
+                    <input required name="fullname" ng-model="model.FullName" type="text">
+                    <div ng-if="model.Errors.FullName" class="error-msg">
+                        {{model.Errors.FullName}}
+                    </div>
+                </md-input-container>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" 
+                                        flex-gt-sm 
+                                        ng-class="(model.Errors != null && model.Errors.UserName) ? 'md-input-invalid' : ''">
+                        <label>{{"USERNAME_LABEL" | translate}}</label>
+                        <input required name="username" ng-model="model.UserName" />
+                        <div ng-if="model.Errors.UserName" class="error-msg">
+                            {{model.Errors.UserName}}
+                        </div>
+                    </md-input-container>
+
+                    <div flex="5" hide-xs hide-sm></div>
+
+                    <md-input-container class="md-block"
+                                        flex-gt-sm
+                                        ng-class="(model.Errors != null && model.Errors.Email) ? 'md-input-invalid' : ''">
+                        <label>{{"EMAIL_LABEL" | translate}}</label>
+                        <input name="email" ng-model="model.Email" required />
+                        <div ng-if="model.Errors.Email" class="error-msg">
+                            {{model.Errors.Email}}
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <md-input-container style="padding-bottom: 20px" class="md-icon-float md-block"
+                                    ng-class="(model.Roles != null && model.Errors.Roles) ? 'md-input-invalid' : ''">
+                    <label>{{"ROLES_LABEL" | translate}}</label>
+                    <md-select ng-model="model.Roles" ng-model-options="{trackBy: '$value.Id'}" multiple required>
+                        <md-option ng-value="role" ng-repeat="role in roles">{{role.Title}}</md-option>
+                    </md-select>
+                    <div ng-if="model.Errors.Roles" class="error-msg">
+                        {{model.Errors.Roles}}
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block">
+                    <label>{{"ADDRESS_LABEL" | translate}}</label>
+                    <input ng-model="model.Address" type="text">
+                </md-input-container>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <label>{{"CITY_LABEL" | translate}}</label>
+                        <input ng-model="model.City" type="text">
+                    </md-input-container>
+
+                    <div flex="5" hide-xs hide-sm></div>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <label>{{"STATE_LABEL" | translate}}</label>
+                        <input ng-model="model.State" type="text">
+                    </md-input-container>
+                </div>
+
+                <md-input-container class="md-icon-float md-block">
+                    <label>{{"PHONE_LABEL" | translate}}</label>
+                    <input ng-model="model.Telephone" type="text">
+                </md-input-container>
+
+                <ui-upload-file image="uploadedImg"></ui-upload-file>
+
+                <md-input-container class="md-block" flex-gt-sm>
+                    <div class="cropArea">
+                        <img-crop image="uploadedImg"
+                                  result-image="model.ProfilePicture"
+                                  change-on-fly="false"
+                                  area-type="circle"
+                                  area-min-size="100"
+                                  result-image-size="60"
+                                  result-image-format="image/png"
+                                  on-change="onChangeImgCrop($dataURI)"
+                                  on-load-error="onLoadErrorImgCrop()"></img-crop>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <div>{{"YOUR_PICTURE" | translate}}</div>
+                    <div style="text-align: center">
+                        <img ng-src="{{model.ProfilePicture}}" />
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary white-color" ng-click="confirm(passwordForm)">
+                {{"MODAL_CONFIRM_BUTTON" | translate}}
+            </md-button>
+            <md-button class="md-raised" ng-click="cancel()">
+                {{"MODAL_CANCEL_BUTTON" | translate}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

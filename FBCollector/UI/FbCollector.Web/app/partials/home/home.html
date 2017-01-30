@@ -1,0 +1,27 @@
+﻿<div class="block-header">
+    <h2>{{"MY_COURSES" | translate}}</h2>
+</div>
+
+<md-card >
+    <md-card-title>
+        <md-card-title-text>
+            <div class="card-header">
+                <h2>
+                    <a href="" >
+                        Facebook login
+                    </a>
+                    <small>{{"COURSE_DESCRIPTION" | translate}}</small>
+                </h2>
+            </div>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <fb:login-button show-faces="true" max-rows="1"
+                         size="large"></fb:login-button>
+
+        <div>
+            <button ng-click="getLastName();">Get last name</button>
+            {{last_name}}
+        </div>
+    </md-card-content>
+</md-card>
