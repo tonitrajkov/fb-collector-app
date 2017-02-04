@@ -168,9 +168,8 @@
     <Content Include="app\app\configuration\config.controller.js" />
     <Content Include="app\app\configuration\config.service.js" />
     <Content Include="app\app\configuration\config.viewModels.js" />
-    <Content Include="app\app\configuration\courseMembersModal.controller.js" />
-    <Content Include="app\app\configuration\courseModal.controller.js" />
-    <Content Include="app\app\configuration\courses.controller.js" />
+    <Content Include="app\app\configuration\pageModal.controller.js" />
+    <Content Include="app\app\configuration\pages.controller.js" />
     <Content Include="app\app\configuration\userModal.controller.js" />
     <Content Include="app\app\configuration\users.controller.js" />
     <Content Include="app\app\directives\breadcrumbs.directive.js" />
@@ -182,9 +181,8 @@
     <Content Include="app\app\infrastructure.js" />
     <Content Include="app\app\utils.js" />
     <Content Include="app\partials\configuration\configuration.html" />
-    <Content Include="app\partials\configuration\course-members-modal.html" />
-    <Content Include="app\partials\configuration\course-modal.html" />
-    <Content Include="app\partials\configuration\courses.html" />
+    <Content Include="app\partials\configuration\page-modal.html" />
+    <Content Include="app\partials\configuration\pages.html" />
     <Content Include="app\partials\configuration\user-modal.html" />
     <Content Include="app\partials\configuration\users.html" />
     <Content Include="app\partials\directives\breadcrumbs.tpl.html" />

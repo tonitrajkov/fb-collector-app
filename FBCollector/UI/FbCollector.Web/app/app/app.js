@@ -63,12 +63,12 @@ var fbcApp = angular.module("fbcApp",
                         displayName: "USERS"
                     }
                 })
-                .state("cfgCourses", {
-                    url: "/courses",
+                .state("cfgPages", {
+                    url: "/pages",
                     views: {
                         'configView': {
-                            templateUrl: "app/partials/configuration/courses.html",
-                            controller: "coursesController"
+                            templateUrl: "app/partials/configuration/pages.html",
+                            controller: "pagesController"
                         }
                     },
                     parent: "configuration",

@@ -1,15 +1,14 @@
 ﻿"use strict";
 
-fbcApp.controller("courseModalController", [
-    "$scope", "$mdDialog", "toastFactory", "course", "semesterTypes", "states", "configViewModels", "configService",
-    function ($scope, $mdDialog, toastFactory, course, semesterTypes, states, configViewModels, configService) {
+fbcApp.controller("pageModalController", [
+    "$scope", "$mdDialog", "toastFactory", "page", "configViewModels", "configService",
+    function ($scope, $mdDialog, toastFactory, page, configViewModels, configService) {
 
-        $scope.model = new configViewModels.CourseModel();
-        $scope.semesterTypes = semesterTypes;
+        $scope.model = new configViewModels.PageModel();
         $scope.modalTitle = TW.Utils.LocalizedString("COURSE_ADD_MODAL_TITLE");
 
-        if (course) {
-            $scope.model = angular.copy(course);
+        if (page) {
+            $scope.model = angular.copy(page);
             $scope.modalTitle = TW.Utils.LocalizedString("COURSE_EDIT_MODAL_TITLE");
             $scope.states = states;
         }
@@ -21,9 +20,9 @@ fbcApp.controller("courseModalController", [
         $scope.confirm = function () {
             $scope.ClearErrors();
 
-            if (course) {
+            if (page) {
                 configService
-                    .updateCourse($scope.model)
+                    .updatePage($scope.model)
                     .then(function (result) {
                         if (result) {
                             $mdDialog.hide();
@@ -38,7 +37,7 @@ fbcApp.controller("courseModalController", [
                     });
             } else {
                 configService
-                    .createCourse($scope.model)
+                    .createPage($scope.model)
                     .then(function (result) {
                         if (result) {
                             $mdDialog.hide();
