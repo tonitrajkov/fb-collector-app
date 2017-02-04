@@ -17,15 +17,6 @@
             <div class="md-dialog-content">
 
                 <md-input-container class="md-icon-float md-block"
-                                    ng-class="(model.Errors != null && model.Errors.Year) ? 'md-input-invalid' : ''">
-                    <label>{{"STUDY_YEAR_LABEL" | translate}}</label>
-                    <input required name="year" ng-model="model.Year" type="text">
-                    <div ng-if="model.Errors.Year" class="error-msg">
-                        {{model.Errors.Year}}
-                    </div>
-                </md-input-container>
-
-                <md-input-container class="md-icon-float md-block"
                                     ng-class="(model.Errors != null && model.Errors.Title) ? 'md-input-invalid' : ''">
                     <label>{{"TITLE" | translate}}</label>
                     <input required name="title" ng-model="model.Title" type="text">
@@ -34,28 +25,34 @@
                     </div>
                 </md-input-container>
 
-                <md-input-container style="padding-bottom: 27px;" class="md-icon-float md-block"
-                                    ng-class="(model.SemesterType != null && model.Errors.SemesterType) ? 'md-input-invalid' : ''">
-                    <label>{{"SEMESTER" | translate}}</label>
-                    <md-select ng-model="model.SemesterType" ng-model-options="{trackBy: '$value.Id'}" required>
-                        <md-option ng-value="semesterType" ng-repeat="semesterType in semesterTypes">{{semesterType.Title}}</md-option>
-                    </md-select>
-                    <div ng-if="model.Errors.SemesterType" class="error-msg">
-                        {{model.Errors.SemesterType}}
+                <md-input-container class="md-icon-float md-block"
+                                    ng-class="(model.Errors != null && model.Errors.Url) ? 'md-input-invalid' : ''">
+                    <label>{{"PAGE_URL" | translate}}</label>
+                    <input required name="url" ng-model="model.Url" type="text">
+                    <div ng-if="model.Errors.Url" class="error-msg">
+                        {{model.Errors.Url}}
                     </div>
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block"
-                                    ng-if="states"
-                                    ng-class="(model.State != null && model.Errors.State) ? 'md-input-invalid' : ''">
-                    <label>{{"STATE" | translate}}</label>
-                    <md-select ng-model="model.State" ng-model-options="{trackBy: '$value.Id'}" required>
-                        <md-option ng-value="state" ng-repeat="state in states">{{state.Title}}</md-option>
-                    </md-select>
-                    <div ng-if="model.Errors.State" class="error-msg">
-                        {{model.Errors.State}}
+                                    ng-class="(model.Errors != null && model.Errors.UrlId) ? 'md-input-invalid' : ''">
+                    <label>{{"PAGE_URL_ID" | translate}}</label>
+                    <input required name="urlId" ng-model="model.UrlId" type="text">
+                    <div ng-if="model.Errors.Url" class="error-msg">
+                        {{model.Errors.UrlId}}
                     </div>
                 </md-input-container>
+
+                <md-input-container class="md-icon-float md-block">
+                    <label>{{"PAGE_FB_ID" | translate}}</label>
+                    <input required name="fbId" ng-model="model.FbId" type="text">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block">
+                    <label>{{"PAGE_FB_TYPE" | translate}}</label>
+                    <input required name="fbType" ng-model="model.FbType" type="text">
+                </md-input-container>
+
             </div>
         </md-dialog-content>
 

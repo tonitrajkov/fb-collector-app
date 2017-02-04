@@ -10,7 +10,7 @@
             </md-tooltip>
             <ng-md-icon icon="filter_list" style="fill: #868686" size="24"></ng-md-icon>
         </md-button>
-        <md-button class="md-icon-button" ng-click="openCourseModal($event, null)">
+        <md-button class="md-icon-button" ng-click="openPageModal($event, null)">
             <md-tooltip md-direction="bottom">
                 {{"ADD_COURSE_LABEL" | translate}}
             </md-tooltip>
@@ -25,20 +25,6 @@
         <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px; ">
             <input ng-model="query.SearchText" style="min-width: 300px; margin-top: 24px"
                    ng-model-options="{ debounce: 300 }" placeholder="{{searchLabel}}">
-        </md-input-container>
-
-        <md-input-container>
-            <md-select ng-model="query.SemesterType" style="min-width: 180px" aria-label="Semester Types">
-                <md-option ng-value="null"><em>- {{"ALL_SEMESTER_TYPES_LABEL" | translate}} -</em></md-option>
-                <md-option ng-value="type" ng-repeat="type in semesterTypes">{{type.Title}}</md-option>
-            </md-select>
-        </md-input-container>
-
-        <md-input-container>
-            <md-select ng-model="query.State" style="min-width: 140px; padding-left:20px" aria-label="States">
-                <md-option ng-value="null"><em>- {{"ALL_STATES_LABEL" | translate}} -</em></md-option>
-                <md-option ng-value="state" ng-repeat="state in states">{{state.Title}}</md-option>
-            </md-select>
         </md-input-container>
 
         <span flex></span>
@@ -59,20 +45,22 @@
                 <th md-column><span>{{"YEAR" | translate}}</span></th>
                 <th md-column><span>{{"STATE" | translate}}</span></th>
                 <th md-column><span>{{"SEMESTER" | translate}}</span></th>
+                <th md-column><span>{{"SEMESTER" | translate}}</span></th>
                 <th md-column style="width: 1%; text-align: center"><span>{{"ACTIONS_LABEL" | translate}}</span></th>
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row data-ng-repeat="course in courses">
-                <td md-cell>{{course.Title}}</td>
-                <td md-cell>{{course.Year || "-"}}</td>
-                <td md-cell>{{course.State.Title}}</td>
-                <td md-cell>{{course.SemesterType.Title}}</td>
+            <tr md-row data-ng-repeat="page in pages">
+                <td md-cell>{{page.Title}}</td>
+                <td md-cell>{{page.Url}}</td>
+                <td md-cell>{{page.UrlId}}</td>
+                <td md-cell>{{page.FbId || "-"}}</td>
+                <td md-cell>{{page.FbType || "-"}}</td>
                 <td md-cell style="width: 1%; text-align: center">
                     <table ng-if="course.State.Id !== 3">
                         <tr>
                             <td>
-                                <md-button class="md-icon-button" ng-click="openMembersModal($event, course)">
+                                <md-button class="md-icon-button" ng-click="openPageModal($event, page)">
                                     <md-tooltip md-direction="bottom">
                                         {{"ADD_COURSE_MEMBERS_LABEL" | translate}}
                                     </md-tooltip>
@@ -80,15 +68,7 @@
                                 </md-button>
                             </td>
                             <td>
-                                <md-button class="md-icon-button" ng-click="openCourseModal($event, course)">
-                                    <md-tooltip md-direction="bottom">
-                                        {{"EDIT_COURSE_LABEL" | translate}}
-                                    </md-tooltip>
-                                    <ng-md-icon icon="edit" style="fill: #868686"></ng-md-icon>
-                                </md-button>
-                            </td>
-                            <td>
-                                <md-button class="md-icon-button" ng-click="deleteCourse($event, course)">
+                                <md-button class="md-icon-button" ng-click="deletePage($event, page)">
                                     <md-tooltip md-direction="bottom">
                                         {{"DELETE_COURSE_LABEL" | translate}}
                                     </md-tooltip>

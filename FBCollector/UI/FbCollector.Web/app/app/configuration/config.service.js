@@ -40,55 +40,29 @@ fbcApp.factory("configService", ["repository", function (repository) {
             //return result;
         },
 
-        // Courses
-        getAllCoursesFiltered: function (data) {
-            //var url = "/Course/GetAllCoursesFiltered";
-            //var result = repository.promisePost(url, data);
-            //return result;
+        // Pages
+        getPagesFiltered: function (data) {
+            var url = "/Page/GetPagesFiltered";
+            var result = repository.promisePost(url, data);
+            return result;
         },
 
-        createCourse: function (data) {
-            //var url = "/Course/CreateCourse";
-            //var result = repository.promisePost(url, data);
-            //return result;
+        createPage: function (data) {
+            var url = "/Page/CreatePage";
+            var result = repository.promisePost(url, data);
+            return result;
         },
 
-        updateCourse: function (data) {
-            //var url = "/Course/UpdateCourse";
-            //var result = repository.promisePost(url, data);
-            //return result;
+        updatePage: function (data) {
+            var url = "/Page/UpdatePage";
+            var result = repository.promisePost(url, data);
+            return result;
         },
 
-        deleteCourse: function (data) {
-            //var url = "/Course/DeleteCourse";
-            //var result = repository.promisePost(url, data);
-            //return result;
-        },
-
-        getAllCourseMembersIds: function (data) {
-            //var url = "/Course/GetAllCourseMembersIds";
-            //var result = repository.promisePost(url, data);
-            //return result;
-        },
-
-        saveCourseMembers: function (data) {
-            //var url = "/Course/SaveCourseMembers";
-            //var result = repository.promisePost(url, data);
-            //return result;
-        },
-
-        // Semester types
-        getAllSemesterTypes: function () {
-            //var url = "/Config/GetAllSemesterTypes";
-            //var result = repository.promisePost(url, null);
-            //return result;
-        },
-
-        // States
-        getAllStates: function (data) {
-            //var url = "/Config/GetAllStates";
-            //var result = repository.promisePost(url, data);
-            //return result;
+        deletePage: function (data) {
+            var url = "/Page/DeletePage";
+            var result = repository.promisePost(url, data);
+            return result;
         }
     };
 }]);

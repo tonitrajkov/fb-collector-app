@@ -23,12 +23,13 @@ fbcApp.factory("configViewModels",
             self.AlreadyHave = false;
         };
 
-        modelRef.CourseModel = function() {
+        modelRef.PageModel = function() {
             var self = this;
             self.Title = "";
-            self.Year = "";
-            self.State = null;
-            self.SemesterType = null;
+            self.Url = "";
+            self.UrlId = "";
+            self.FbId = null;
+            self.FbType = null;
         };
 
         return modelRef;
