@@ -21,7 +21,7 @@ var fbcApp = angular.module("fbcApp",
 
             $urlRouterProvider.otherwise("/home");
 
-            $urlRouterProvider.when("/configuration", "/configuration/users");
+            $urlRouterProvider.when("/configuration", "/configuration/pages");
 
             //States
             $stateProvider
@@ -114,6 +114,25 @@ fbcApp.factory("toastFactory", [
         };
     }
 ]);
+
+fbcApp.factory("modalFactory", [
+    "$mdDialog", function ($mdDialog) {
+        return {
+            confrimation: function (ev, title, message, callback) {
+                $mdDialog.show({
+                    locals: { title: title, msg: message },
+                    controller: "confirmationModalController",
+                    templateUrl: "app/partials/home/confrimation-modal.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                }).then(callback);
+            }
+        };
+    }
+]);
+
 
 fbcApp.factory("UnauthorizedExceptionInterceptor",
 [

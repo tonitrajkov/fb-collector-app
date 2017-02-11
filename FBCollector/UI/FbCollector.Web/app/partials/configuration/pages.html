@@ -22,9 +22,16 @@
          ng-show="showFilters">
         <span>{{"SEARCH_FILTERS" | translate}}</span>
 
-        <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px; ">
+        <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px;">
             <input ng-model="query.SearchText" style="min-width: 300px; margin-top: 24px"
                    ng-model-options="{ debounce: 300 }" placeholder="{{searchLabel}}">
+        </md-input-container>
+
+        <md-input-container>
+            <md-select ng-model="query.Importance" style="min-width: 140px; padding-left:20px" aria-label="Levels">
+                <md-option ng-value="null"><em>- {{"ALL_LEVELS" | translate}} -</em></md-option>
+                <md-option ng-value="level.Key" ng-repeat="level in levels">{{level.Value}}</md-option>
+            </md-select>
         </md-input-container>
 
         <span flex></span>
@@ -42,10 +49,10 @@
         <thead ng-if="!options.decapitate" md-head md-on-reorder="onReorder">
             <tr md-row>
                 <th md-column><span>{{"TITLE" | translate}}</span></th>
-                <th md-column><span>{{"YEAR" | translate}}</span></th>
-                <th md-column><span>{{"STATE" | translate}}</span></th>
-                <th md-column><span>{{"SEMESTER" | translate}}</span></th>
-                <th md-column><span>{{"SEMESTER" | translate}}</span></th>
+                <th md-column><span>{{"URL" | translate}}</span></th>
+                <th md-column><span>{{"URL_ID" | translate}}</span></th>
+                <th md-column><span>{{"FB_ID" | translate}}</span></th>
+                <th md-column><span>{{"FB_TYPE" | translate}}</span></th>
                 <th md-column style="width: 1%; text-align: center"><span>{{"ACTIONS_LABEL" | translate}}</span></th>
             </tr>
         </thead>
@@ -62,15 +69,15 @@
                             <td>
                                 <md-button class="md-icon-button" ng-click="openPageModal($event, page)">
                                     <md-tooltip md-direction="bottom">
-                                        {{"ADD_COURSE_MEMBERS_LABEL" | translate}}
+                                        {{"EDIT_PAGE" | translate}}
                                     </md-tooltip>
-                                    <ng-md-icon icon="group_add" style="fill: #868686"></ng-md-icon>
+                                    <ng-md-icon icon="edit" style="fill: #868686"></ng-md-icon>
                                 </md-button>
                             </td>
                             <td>
                                 <md-button class="md-icon-button" ng-click="deletePage($event, page)">
                                     <md-tooltip md-direction="bottom">
-                                        {{"DELETE_COURSE_LABEL" | translate}}
+                                        {{"DELETE_PAGE_LABEL" | translate}}
                                     </md-tooltip>
                                     <ng-md-icon icon="delete" style="fill: #868686"></ng-md-icon>
                                 </md-button>

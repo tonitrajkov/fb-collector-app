@@ -30,6 +30,7 @@ fbcApp.factory("configViewModels",
             self.UrlId = "";
             self.FbId = null;
             self.FbType = null;
+            self.Importance = null;
         };
 
         return modelRef;

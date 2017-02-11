@@ -63,6 +63,12 @@ fbcApp.factory("configService", ["repository", function (repository) {
             var url = "/Page/DeletePage";
             var result = repository.promisePost(url, data);
             return result;
+        },
+
+        getImportanceLevels: function () {
+            var url = "/Base/GetImportanceLevels";
+            var result = repository.promisePost(url, null);
+            return result;
         }
     };
 }]);

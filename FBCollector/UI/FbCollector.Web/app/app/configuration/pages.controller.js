@@ -1,8 +1,8 @@
 ﻿"use strict";
 
 fbcApp.controller("pagesController",
-    ["$scope", "$mdEditDialog", "$mdDialog", "$timeout", "configService",
-    function ($scope, $mdEditDialog, $mdDialog, $timeout, configService) {
+    ["$scope", "$mdEditDialog", "$mdDialog", "$timeout", "toastFactory", "modalFactory", "configService",
+    function ($scope, $mdEditDialog, $mdDialog, $timeout, toastFactory, modalFactory, configService) {
 
         $scope.options = {
             rowSelection: true,
@@ -20,7 +20,8 @@ fbcApp.controller("pagesController",
         $scope.query = {
             CurrentPage: 1,
             ItemsPerPage: 15,
-            SearchText: ""
+            SearchText: "",
+            Importance: null
         };
 
         $scope.showFilters = false;
@@ -29,13 +30,13 @@ fbcApp.controller("pagesController",
         $scope.loadPages = function () {
             configService
                 .getPagesFiltered($scope.query)
-                    .then(function (result) {
-                        if (result) {
-                            $scope.pages = result.Items;
-                            $scope.totalRecords = result.TotalItems;
-                        }
-                    });
-        }
+                .then(function (result) {
+                    if (result) {
+                        $scope.pages = result.Items;
+                        $scope.totalRecords = result.TotalItems;
+                    }
+                });
+        };
 
         $scope.loadPages();
 
@@ -49,7 +50,7 @@ fbcApp.controller("pagesController",
 
         $scope.openPageModal = function (ev, page) {
             $mdDialog.show({
-                locals: { page: page },
+                locals: { page: page, levels: $scope.levels },
                 controller: "pageModalController",
                 templateUrl: "app/partials/configuration/page-modal.html",
                 parent: angular.element(document.body),
@@ -63,7 +64,24 @@ fbcApp.controller("pagesController",
         };
 
         $scope.deletePage = function (ev, page) {
-         
+            var id = page.Id;
+
+            modalFactory.confrimation(ev, "tets", "test msg",
+                 function () {
+                     var data = {
+                         pageId: id
+                     };
+                     configService
+                       .deletePage(data)
+                           .then(function (result) {
+                               if (result) {
+                                   $scope.loadPages();
+                               }
+                           }, function (error) {
+                               $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
+                           toastFactory.simple($scope.ValidationErrors);
+                       });
+                 });
         };
 
         $scope.reloadTable = function () {
@@ -76,10 +94,22 @@ fbcApp.controller("pagesController",
             $scope.loadPages();
         };
 
-        $scope.$watch("query.SearchText",
+        $scope.$watchGroup(["query.SearchText", "query.Importance"],
             function (newValues, oldValues) {
                 if (newValues !== oldValues)
                     $scope.loadPages();
             });
+
+        $scope.loadImportanceLevels = function () {
+            configService
+                .getImportanceLevels()
+                .then(function (result) {
+                    if (result) {
+                        $scope.levels = result;
+                    }
+                });
+        };
+
+        $scope.loadImportanceLevels();
 
     }]);

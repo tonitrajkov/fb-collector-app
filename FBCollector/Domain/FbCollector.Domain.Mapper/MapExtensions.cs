@@ -80,7 +80,8 @@ namespace FbCollector.Domain.Mapper
                 UrlId = page.UrlId,
                 FbType = page.FbType,
                 Url = page.Url,
-                FbId = page.FbId
+                FbId = page.FbId,
+                Importance = page.Importance
             };
 
             return model;

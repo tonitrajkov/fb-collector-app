@@ -18,6 +18,8 @@
     public class PageSearchModel : SearchModel
     {
         public string SearchText { get; set; }
+
+        public int? Importance { get; set; }
     }
 
     public class PageFeedSearchModel : SearchModel

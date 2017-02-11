@@ -3,3 +3,8 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollect
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Models\obj\Debug\FbCollector.Models.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Models\obj\Debug\FbCollector.Models.pdb
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Models\obj\Debug\FbCollector.Models.csprojResolveAssemblyReference.cache
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Models\bin\Debug\FbCollector.Models.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Models\bin\Debug\FbCollector.Models.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Models\obj\Debug\FbCollector.Models.csprojResolveAssemblyReference.cache
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Models\obj\Debug\FbCollector.Models.dll
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Models\obj\Debug\FbCollector.Models.pdb

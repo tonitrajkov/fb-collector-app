@@ -1,16 +1,16 @@
 ﻿"use strict";
 
 fbcApp.controller("pageModalController", [
-    "$scope", "$mdDialog", "toastFactory", "page", "configViewModels", "configService",
-    function ($scope, $mdDialog, toastFactory, page, configViewModels, configService) {
+    "$scope", "$mdDialog", "toastFactory", "page", "levels", "configViewModels", "configService",
+    function ($scope, $mdDialog, toastFactory, page, levels, configViewModels, configService) {
 
         $scope.model = new configViewModels.PageModel();
         $scope.modalTitle = TW.Utils.LocalizedString("COURSE_ADD_MODAL_TITLE");
+        $scope.levels = levels;
 
         if (page) {
             $scope.model = angular.copy(page);
             $scope.modalTitle = TW.Utils.LocalizedString("COURSE_EDIT_MODAL_TITLE");
-            $scope.states = states;
         }
 
         $scope.cancel = function () {

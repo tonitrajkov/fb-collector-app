@@ -16,6 +16,17 @@
         <md-dialog-content>
             <div class="md-dialog-content">
 
+                <md-input-container style="padding-bottom: 27px;" class="md-icon-float md-block"
+                                    ng-class="(model.Importance != null && model.Errors.Importance) ? 'md-input-invalid' : ''">
+                    <label>{{"IMPORTANCE_LEVEL" | translate}}</label>
+                    <md-select ng-model="model.Importance" required>
+                        <md-option ng-value="level.Key" ng-repeat="level in levels">{{level.Value}}</md-option>
+                    </md-select>
+                    <div ng-if="model.Errors.Importance" class="error-msg">
+                        {{model.Errors.Importance}}
+                    </div>
+                </md-input-container>
+
                 <md-input-container class="md-icon-float md-block"
                                     ng-class="(model.Errors != null && model.Errors.Title) ? 'md-input-invalid' : ''">
                     <label>{{"TITLE" | translate}}</label>
@@ -45,12 +56,12 @@
 
                 <md-input-container class="md-icon-float md-block">
                     <label>{{"PAGE_FB_ID" | translate}}</label>
-                    <input required name="fbId" ng-model="model.FbId" type="text">
+                    <input name="fbId" ng-model="model.FbId" type="text">
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
                     <label>{{"PAGE_FB_TYPE" | translate}}</label>
-                    <input required name="fbType" ng-model="model.FbType" type="text">
+                    <input name="fbType" ng-model="model.FbType" type="text">
                 </md-input-container>
 
             </div>

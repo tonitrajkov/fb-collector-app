@@ -175,6 +175,7 @@
     <Content Include="app\app\directives\breadcrumbs.directive.js" />
     <Content Include="app\app\directives\uploadFile.directive.js" />
     <Content Include="app\app\filters.js" />
+    <Content Include="app\app\home\confrimationModal.controller.js" />
     <Content Include="app\app\home\course.controller.js" />
     <Content Include="app\app\home\main.controller.js" />
     <Content Include="app\app\home\main.service.js" />
@@ -187,6 +188,7 @@
     <Content Include="app\partials\configuration\users.html" />
     <Content Include="app\partials\directives\breadcrumbs.tpl.html" />
     <Content Include="app\partials\directives\upload-file.tpl.html" />
+    <Content Include="app\partials\home\confrimation-modal.html" />
     <Content Include="app\partials\home\header.html" />
     <Content Include="app\partials\home\home.html" />
     <Content Include="app\partials\home\no-permission-page.html" />

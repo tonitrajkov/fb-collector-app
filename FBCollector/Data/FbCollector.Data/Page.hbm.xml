@@ -32,6 +32,10 @@
       <column name="DateCreated" sql-type="datetime" not-null="true"/>
     </property>
 
+    <property name="Importance" access="field.camelcase-underscore">
+      <column name="Importance" sql-type="int" not-null="true"/>
+    </property>
+
   </class>
 
 </hibernate-mapping>
