@@ -26,7 +26,7 @@ namespace FbCollector.Services
             var page = _pageRepository.Query()
                 .FirstOrDefault(p => p.UrlId.ToLower() == model.UrlId.ToLower());
 
-            if(page != null)
+            if (page != null)
                 throw new FbException("PAGE_ALREDY_EXISTS");
 
             var domain = new Page(model.Title, model.Url, model.UrlId, model.Importance);
@@ -51,7 +51,7 @@ namespace FbCollector.Services
             page.Url = model.Url;
             page.Title = model.Title;
             page.Importance = model.Importance;
-            
+
             _pageRepository.Update(page);
         }
 
@@ -114,6 +114,15 @@ namespace FbCollector.Services
             }
 
             return result;
+        }
+
+        public PageModel GetPageById(int pageId)
+        {
+            var page = _pageRepository.Get(pageId);
+            if (page == null)
+                throw new FbException("PAGE_DOESNT_EXISTS");
+
+            return page.ToModel();
         }
     }
 }

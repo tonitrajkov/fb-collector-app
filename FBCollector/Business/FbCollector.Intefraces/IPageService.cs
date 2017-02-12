@@ -11,5 +11,7 @@ namespace FbCollector.Intefraces
         void DeletePage(int pageId);
 
         SearchResult<PageModel> GetPagesFiltered(PageSearchModel model);
+
+        PageModel GetPageById(int pageId);
     }
 }

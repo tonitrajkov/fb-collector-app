@@ -71,15 +71,6 @@ fbcApp.controller("mainController",
               );
             };
 
-            // Header ---------------------------
-            $scope.openSearch = function () {
-                angular.element("#header").addClass("search-toggled");
-            };
-
-            $scope.closeSearch = function () {
-                angular.element("#header").removeClass("search-toggled");
-            };
-
             $scope.changeLanguage = function (language) {
                 $scope.currentLanguage = language;
 

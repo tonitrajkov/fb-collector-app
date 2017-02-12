@@ -10,5 +10,7 @@ namespace FbCollector.Intefraces
         void DeletePageFeed(int feedId);
 
         SearchResult<PageFeedModel> GetPageFeedsFiltered(PageFeedSearchModel model);
+
+        void SetFeedAsUsed(int feedId);
     }
 }

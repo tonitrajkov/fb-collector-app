@@ -24,6 +24,12 @@
 
     public class PageFeedSearchModel : SearchModel
     {
+        public string PageUrlId { get; set; }
+
         public string SearchText { get; set; }
+
+        public bool? IsUsed { get; set; }
+
+        public string Type { get; set; }
     }
 }

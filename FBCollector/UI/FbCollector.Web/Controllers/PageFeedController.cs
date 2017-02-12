@@ -40,5 +40,12 @@ namespace FbCollector.Web.Controllers
             _pageFeedService.DeletePageFeed(feedId);
             return Json(true);
         }
+
+        [HttpPost]
+        public JsonResult SetFeedAsUsed(int feedId)
+        {
+            _pageFeedService.SetFeedAsUsed(feedId);
+            return Json(true);
+        }
 	}
 }

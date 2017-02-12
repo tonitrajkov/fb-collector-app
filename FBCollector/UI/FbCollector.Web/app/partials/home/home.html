@@ -7,7 +7,7 @@
         <md-card-title-text>
             <div class="card-header">
                 <h2>
-                    <a href="" >
+                    <a href="">
                         Facebook login
                     </a>
                     <small>{{"COURSE_DESCRIPTION" | translate}}</small>
@@ -17,11 +17,48 @@
     </md-card-title>
     <md-card-content>
         <fb:login-button show-faces="true" max-rows="1"
-                         size="large"></fb:login-button>
+                         size="small"></fb:login-button>
 
         <div>
             <button ng-click="getLastName();">Get last name</button>
             {{last_name}}
         </div>
+    </md-card-content>
+</md-card>
+
+<div class="block-header">
+    <h2>{{"PAGES" | translate}}</h2>
+</div>
+
+<md-card ng-if="pages.length == 0">
+    <md-card-title style="padding: 16px;">
+        <md-card-title-text>
+            <div class="card-header">
+                <h2>
+                    <small>
+                        <ng-md-icon icon="info_outline" style="fill: #AEAEAE; padding-top:2px" size="20"></ng-md-icon>
+                        {{"NO_DAТА_TO_SHOW" | translate}}
+                    </small>
+                </h2>
+            </div>
+        </md-card-title-text>
+    </md-card-title>
+</md-card>
+
+<md-card ng-repeat="page in pages">
+    <md-card-title>
+        <md-card-title-text>
+            <div class="card-header">
+                <h2>
+                    <a href="" ui-sref="pageDetails({pageId: page.Id})">
+                        {{page.Title}}
+                    </a>
+                    <small>{{"COURSE_DESCRIPTION" | translate}}</small>
+                </h2>
+            </div>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content ng-if="course.Members">
+      
     </md-card-content>
 </md-card>

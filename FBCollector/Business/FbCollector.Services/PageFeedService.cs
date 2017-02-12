@@ -74,10 +74,19 @@ namespace FbCollector.Services
 
             Expression<Func<PageFeed, bool>> filter = PredicateBuilder.True<PageFeed>();
 
+            if(string.IsNullOrEmpty(model.PageUrlId))
+                throw new FbException("PAGE_URL_IS_EMPTY");
+
+            filter = filter.And(x => x.PageId.ToLower() == model.PageUrlId.ToLower());
+
             if (!string.IsNullOrEmpty(model.SearchText))
-            {
                 filter = filter.And(x => x.Message.ToLower().Contains(model.SearchText.Trim().ToLower()));
-            }
+
+            if (model.IsUsed.HasValue)
+                filter = filter.And(x => x.IsUsed == model.IsUsed.Value);
+
+            if (!string.IsNullOrEmpty(model.Type))
+                filter = filter.And(x => x.Type.ToLower() == model.Type.ToLower());
 
             query = query.Where(filter);
 
@@ -98,6 +107,17 @@ namespace FbCollector.Services
             }
 
             return result;
+        }
+
+        public void SetFeedAsUsed(int feedId)
+        {
+            var feed = _pageFeedRepository.Get(feedId);
+            if (feed == null)
+                throw new FbException("FEED_DOESNT_EXISTS");
+
+            feed.IsUsed = true;
+            feed.DateUsed = DateTime.Now;
+            _pageFeedRepository.Update(feed);
         }
     }
 }

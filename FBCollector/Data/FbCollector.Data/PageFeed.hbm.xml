@@ -21,7 +21,7 @@
     </property>
     
     <property name="Message" access="field.camelcase-underscore">
-      <column name="Message" sql-type="nvarchar" length="500" not-null="false"/>
+      <column name="Message" sql-type="nvarchar" length="1000000" not-null="false"/>
     </property>
 
     <property name="Type" access="field.camelcase-underscore">

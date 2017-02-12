@@ -67,7 +67,7 @@ namespace FbCollector.Domain
             get { return _message; }
             set
             {
-                if (!string.IsNullOrEmpty(value) && value.Length > 500)
+                if (!string.IsNullOrEmpty(value) && value.Length > 1000000)
                     throw new ArgumentOutOfRangeException("value");
 
                 _message = value;

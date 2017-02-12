@@ -30,14 +30,25 @@ var fbcApp = angular.module("fbcApp",
                     views: {
                         'mainView': {
                             templateUrl: "app/partials/home/home.html",
-                            controller: "courseController"
+                            controller: "pagesHomeController"
                         }
                     },
                     data: {
                         displayName: "HOME"
                     }
                 })
-
+                .state("pageDetails", {
+                    url: "/page/{pageId:int}",
+                    views: {
+                        'mainView': {
+                            templateUrl: "app/partials/page/page-details.html",
+                            controller: "pageDetailsController"
+                        }
+                    },
+                    data: {
+                        displayName: "PAGE"
+                    }
+                })
                 .state("configuration", {
                     url: "/configuration",
                     views: {

@@ -176,11 +176,14 @@
     <Content Include="app\app\directives\uploadFile.directive.js" />
     <Content Include="app\app\filters.js" />
     <Content Include="app\app\home\confrimationModal.controller.js" />
-    <Content Include="app\app\home\course.controller.js" />
+    <Content Include="app\app\home\pagesHome.controller.js" />
     <Content Include="app\app\home\main.controller.js" />
     <Content Include="app\app\home\main.service.js" />
     <Content Include="app\app\infrastructure.js" />
+    <Content Include="app\app\page\page.service.js" />
+    <Content Include="app\app\page\page.viewModel.js" />
     <Content Include="app\app\utils.js" />
+    <Content Include="app\app\fb.service.js" />
     <Content Include="app\partials\configuration\configuration.html" />
     <Content Include="app\partials\configuration\page-modal.html" />
     <Content Include="app\partials\configuration\pages.html" />
@@ -194,6 +197,8 @@
     <Content Include="app\partials\home\no-permission-page.html" />
     <Content Include="app\partials\home\not-found-page.html" />
     <Content Include="app\partials\home\side-nav.html" />
+    <Content Include="app\app\page\pageDetails.controller.js" />
+    <Content Include="app\partials\page\page-details.html" />
     <Content Include="Content\angular-material-calendar\angular-material-calendar.css" />
     <Content Include="Content\angular-material-calendar\angular-material-calendar.min.css" />
     <Content Include="Content\angular-material\angular-material-icons.css" />

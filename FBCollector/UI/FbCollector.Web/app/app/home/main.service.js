@@ -61,6 +61,12 @@ fbcApp.factory("mainService", [
                 //return result;
             },
 
+            getPagesFiltered: function (data) {
+                var url = "/Page/GetPagesFiltered";
+                var result = repository.promisePost(url, data);
+                return result;
+            },
+
             createPageFeed: function (data) {
                 var url = "/PageFeed/CreatePageFeed";
                 var result = repository.promisePost(url, data);

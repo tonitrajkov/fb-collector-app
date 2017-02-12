@@ -68,5 +68,12 @@ namespace FbCollector.Web.Controllers
             _pageService.DeletePage(pageId);
             return Json(true);
         }
+
+        [HttpPost]
+        public JsonResult GetPageById(int pageId)
+        {
+           var page = _pageService.GetPageById(pageId);
+            return Json(page);
+        }
     }
 }
