@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IFacebookService.cs" />
+    <Compile Include="ILocalizationService.cs" />
     <Compile Include="IPageFeedService.cs" />
     <Compile Include="IPageService.cs" />
     <Compile Include="IRoleService.cs" />

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="FbCollector.Domain"
+                   namespace="FbCollector.Domain" auto-import="false">
+
+  <class name="Language" table="Languages" schema="loc" lazy="true">
+
+    <id name="Id" column="Id" type="int" />
+
+    <property name="Title" access="field.camelcase-underscore">
+      <column name="Title" sql-type="nvarchar" length="250" not-null="true"/>
+    </property>
+
+    <property name="Code" access="field.camelcase-underscore">
+      <column name="Code" sql-type="nvarchar" length="10" not-null="true"/>
+    </property>
+
+    <property name="IsDefault" access="field.camelcase-underscore">
+      <column name="IsDefault" sql-type="bit" not-null="true"/>
+    </property>
+
+  </class>
+
+</hibernate-mapping>

@@ -17,7 +17,7 @@ var fbcApp = angular.module("fbcApp",
 
             //theming
             $mdThemingProvider.theme("default")
-                .primaryPalette("amber")
+                .primaryPalette("red")
                 .accentPalette("pink");
 
             $urlRouterProvider.otherwise("/home");

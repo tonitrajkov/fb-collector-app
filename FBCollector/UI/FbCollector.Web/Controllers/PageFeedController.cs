@@ -51,10 +51,15 @@ namespace FbCollector.Web.Controllers
             if (string.IsNullOrEmpty(accessToken))
                 throw new FbException("ACCESTOKEN_IS_REQURED");
 
-            var args = "feed?fields=message,id,link,type,full_picture,name,shares,updated_time,created_time&limit=100";
+            var since = string.Empty;
+            var sinceDate = _pageFeedService.GetLastPageFeedDate(pageUrlId);
+            if (sinceDate != null)
+                since = "&since=" + sinceDate.ToString();
+
+            var args = "feed?fields=message,id,link,type,full_picture,name,shares,updated_time,created_time" + since + "&limit=100";
             _facebookService.GetPageFeed(accessToken, pageUrlId, args);
 
             return Json(true);
         }
-	}
+    }
 }

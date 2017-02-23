@@ -111,5 +111,29 @@ namespace FbCollector.Domain.Mapper
 
             return model;
         }
+
+        public static LocalizationModel ToModel(this Localization loc)
+        {
+            var model = new LocalizationModel
+            {
+                Key = loc.Key,
+                Value = loc.Value
+            };
+
+            return model;
+        }
+
+        public static LanguageModel ToModel(this Language lan)
+        {
+            var model = new LanguageModel
+            {
+                Id = lan.Id,
+                Title = lan.Title,
+                Code = lan.Code,
+                IsDefault = lan.IsDefault
+            };
+
+            return model;
+        }
     }
 }

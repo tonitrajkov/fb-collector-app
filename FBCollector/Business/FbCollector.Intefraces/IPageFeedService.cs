@@ -12,5 +12,7 @@ namespace FbCollector.Intefraces
         SearchResult<PageFeedModel> GetPageFeedsFiltered(PageFeedSearchModel model);
 
         void SetFeedAsUsed(int feedId);
+
+        long? GetLastPageFeedDate(string pageUrlId);
     }
 }

@@ -55,14 +55,14 @@ namespace FbCollector.Services
 
         public void GetPageFeed(string accessToken, string endpoint, string args = null)
         {
-            _pageUrlId = endpoint;
+            _pageUrlId = endpoint;            
             var param = string.Format("{0}/{1}&access_token={2}", endpoint, args, accessToken);
+
             var response = _httpClient.GetAsync(param).Result;
             if (!response.IsSuccessStatusCode)
                 return;
 
             var jsonResult = response.Content.ReadAsStringAsync().Result;
-
             var model = JsonConvert.DeserializeObject<FbFeedResponseModel>(jsonResult);
 
             if (model.data != null && model.data.Any())

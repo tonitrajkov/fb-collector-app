@@ -225,6 +225,7 @@
     <Content Include="Content\img\covers\cover-6.png" />
     <Content Include="Content\img\covers\cover-7.png" />
     <Content Include="Content\img\covers\cover-8.png" />
+    <Content Include="Content\img\filter-logo.png" />
     <Content Include="Content\img\flags\en.png" />
     <Content Include="Content\img\flags\mk.png" />
     <Content Include="Content\img\flags\sq.png" />

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using FbCollector.Domain;
 using FbCollector.Domain.Mapper;
+using FbCollector.Infrastructure;
 using FbCollector.Infrastructure.Helpers;
 using FbCollector.Intefraces;
 using FbCollector.Models;
@@ -118,6 +117,20 @@ namespace FbCollector.Services
             feed.IsUsed = true;
             feed.DateUsed = DateTime.Now;
             _pageFeedRepository.Update(feed);
+        }
+
+        public long? GetLastPageFeedDate(string pageUrlId)
+        {
+            var feed = _pageFeedRepository.Query()
+                        .OrderByDescending(f => f.TimeCreaded)
+                        .FirstOrDefault(f => f.PageId.ToLower() == pageUrlId.ToLower());
+            if (feed == null)
+                return null;
+
+            if (!feed.TimeCreaded.HasValue)
+                return null;
+
+            return Internals.GetTime(feed.TimeCreaded.Value);
         }
     }
 }
