@@ -23,24 +23,24 @@ namespace FbCollector.Services
             _pageFeedRepository = ServiceLocator.Current.GetInstance<IRepository<PageFeed>>();
         }
 
-        public void CreatePageFeed(List<PageFeedModel> feeds)
+        public void CreatePageFeed(List<FbFeedModel> feeds, string pageUrlId)
         {
             foreach (var item in feeds)
             {
-                var feed = new PageFeed(item.PostId, item.Link, item.Type, item.PageId)
+                var feed = new PageFeed(item.id, item.link, item.type, pageUrlId)
                 {
-                    FbCreatedTime = item.FbCreatedTime,
-                    FbUpdatedTime = item.FbUpdatedTime,
-                    Type = item.Type,
-                    PostName = item.PostName,
-                    PostPicture = item.PostPicture,
-                    Shares = item.Shares,
-                    TimeCreaded = item.TimeCreaded,
-                    TimeUpdated = item.TimeUpdated
+                    FbCreatedTime = item.created_time,
+                    FbUpdatedTime = item.updated_time,
+                    Type = item.type,
+                    PostName = item.name,
+                    PostPicture = item.full_picture,
+                    Shares = (item.shares != null && item.shares.count.HasValue) ? item.shares.count.Value : 0,
+                    TimeCreaded = !string.IsNullOrEmpty(item.created_time) ?
+                                        DateTime.Parse(item.created_time) : (DateTime?)null,
+                    TimeUpdated = !string.IsNullOrEmpty(item.updated_time) ?
+                                        DateTime.Parse(item.updated_time) : (DateTime?)null,
+                    Message = item.message
                 };
-
-                if (!string.IsNullOrEmpty(item.Message))
-                    feed.Message = item.Message;
 
                 _pageFeedRepository.Save(feed);
             }
@@ -74,7 +74,7 @@ namespace FbCollector.Services
 
             Expression<Func<PageFeed, bool>> filter = PredicateBuilder.True<PageFeed>();
 
-            if(string.IsNullOrEmpty(model.PageUrlId))
+            if (string.IsNullOrEmpty(model.PageUrlId))
                 throw new FbException("PAGE_URL_IS_EMPTY");
 
             filter = filter.And(x => x.PageId.ToLower() == model.PageUrlId.ToLower());

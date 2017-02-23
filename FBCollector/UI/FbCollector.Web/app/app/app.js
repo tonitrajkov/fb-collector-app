@@ -8,11 +8,12 @@ var fbcApp = angular.module("fbcApp",
      "ngImgCrop",
      "materialCalendar",
      "mdPickers",
-     "ngScrollbars"])
+     "ngScrollbars",
+     "ngStorage"])
     .config(["$stateProvider", "$urlRouterProvider", "$mdThemingProvider", "$httpProvider",
         function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
-           // $httpProvider.interceptors.push("UnauthorizedExceptionInterceptor");
+            // $httpProvider.interceptors.push("UnauthorizedExceptionInterceptor");
 
             //theming
             $mdThemingProvider.theme("default")

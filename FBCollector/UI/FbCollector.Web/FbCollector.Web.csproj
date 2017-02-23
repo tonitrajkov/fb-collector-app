@@ -182,6 +182,7 @@
     <Content Include="app\app\infrastructure.js" />
     <Content Include="app\app\page\page.service.js" />
     <Content Include="app\app\page\page.viewModel.js" />
+    <Content Include="app\app\page\syncFbModal.controller.js" />
     <Content Include="app\app\utils.js" />
     <Content Include="app\app\fb.service.js" />
     <Content Include="app\partials\configuration\configuration.html" />
@@ -199,6 +200,7 @@
     <Content Include="app\partials\home\side-nav.html" />
     <Content Include="app\app\page\pageDetails.controller.js" />
     <Content Include="app\partials\page\page-details.html" />
+    <Content Include="app\partials\page\sync-fb-modal.html" />
     <Content Include="Content\angular-material-calendar\angular-material-calendar.css" />
     <Content Include="Content\angular-material-calendar\angular-material-calendar.min.css" />
     <Content Include="Content\angular-material\angular-material-icons.css" />
@@ -1054,6 +1056,8 @@
     <Content Include="Scripts\moment-with-locale.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\ng-img-crop\ng-img-crop.js" />
+    <Content Include="Scripts\ngStorage\ngStorage.js" />
+    <Content Include="Scripts\ngStorage\ngStorage.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scrollbars.js" />

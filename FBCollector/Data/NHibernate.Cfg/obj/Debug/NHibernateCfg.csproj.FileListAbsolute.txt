@@ -33,3 +33,4 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\D
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Data\NHibernate.Cfg\bin\Debug\NHibernate.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Data\NHibernate.Cfg\obj\Debug\NHibernateCfg.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Data\NHibernate.Cfg\obj\Debug\NHibernateCfg.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Data\NHibernate.Cfg\obj\Debug\NHibernateCfg.csprojResolveAssemblyReference.cache
