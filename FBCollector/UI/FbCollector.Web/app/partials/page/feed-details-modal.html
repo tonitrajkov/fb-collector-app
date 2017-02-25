@@ -1,0 +1,33 @@
+﻿<md-dialog aria-label="Course Modal">
+    <form ng-cloak name="feedForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="white-color">{{"COURSE_EDIT_MODAL_TITLE" | translate}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        {{"CLOSE" | translate}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+           
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary white-color" ng-click="confirm(feedForm)">
+                {{"MODAL_CONFIRM_BUTTON" | translate}}
+            </md-button>
+            <md-button class="md-raised" ng-click="cancel()">
+                {{"MODAL_CANCEL_BUTTON" | translate}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

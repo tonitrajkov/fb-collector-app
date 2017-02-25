@@ -10,7 +10,7 @@
     </id>
 
     <property name="Key" access="field.camelcase-underscore">
-      <column name="Key" sql-type="nvarchar" length="1000" not-null="true"/>
+      <column name="[Key]" sql-type="nvarchar" length="1000" not-null="true"/>
     </property>
 
     <property name="Value" access="field.camelcase-underscore">

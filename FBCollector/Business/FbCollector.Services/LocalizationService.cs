@@ -33,7 +33,7 @@ namespace FbCollector.Services
             return languages.Select(l => l.ToModel()).ToList();
         }
 
-        public List<LocalizationModel> LoadLanguage(string langCode)
+        public SystemLanguage LoadLanguage(string langCode)
         {
             if (string.IsNullOrEmpty(langCode))
             {
@@ -47,9 +47,14 @@ namespace FbCollector.Services
             }
 
             var languages = _localizationRepository.Query()
-                .Where(l => l.LanguageCode.ToLower() == langCode.ToLower());
+                .Where(l => l.LanguageCode.ToLower() == langCode.ToLower())
+                    .Select(l => l.ToModel()).ToList();
 
-            return languages.Select(l => l.ToModel()).ToList();;
+            return new SystemLanguage
+                    {
+                        Code = langCode,
+                        Items = languages
+                    };
         }
     }
 }

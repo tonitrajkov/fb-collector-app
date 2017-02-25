@@ -111,6 +111,21 @@ fbcApp.controller("pageDetailsController",
                     $scope.syncFbModal(ev);
             };
 
+            $scope.openFeedModal = function (ev, feed) {
+                $mdDialog.show({
+                    locals: { feed: feed },
+                    controller: "feedDetailsModalController",
+                    templateUrl: "app/partials/page/feed-details-modal.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                })
+                    .then(function () {
+                        $scope.reloadTable();
+                    });
+            };
+
             $scope.reloadTable = function () {
                 $scope.query = {
                     CurrentPage: 1,

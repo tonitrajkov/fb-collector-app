@@ -164,7 +164,7 @@
             </thead>
             <tbody md-body>
                 <tr md-row data-ng-repeat="feed in feeds">
-                    <td md-cell style="width: 20%">{{feed.Message || "-"}}</td>
+                    <td md-cell style="width: 20%">{{feed.Message | truncateTitle:200 }}</td>
                     <td md-cell style="width: 1%">{{feed.Type}}</td>
                     <td md-cell style="width: 2%">{{feed.FbCreatedTime}}</td>
                     <td md-cell style="width: 2%">{{feed.FbUpdatedTime}}</td>
@@ -173,7 +173,7 @@
                     <td md-cell style="width: 1%">{{feed.Shares}}</td>
                     <td md-cell style="width: 1%">{{feed.IsUsed}}</td>
                     <td md-cell style="width: 1%; text-align: center">
-                        <md-button class="md-icon-button" ng-click="openPageModal($event, page)">
+                        <md-button class="md-icon-button" ng-click="openFeedModal($event, feed)">
                             <md-tooltip md-direction="bottom">
                                 {{"EDIT_PAGE" | translate}}
                             </md-tooltip>
