@@ -1,8 +1,8 @@
-﻿<md-dialog aria-label="Course Modal">
+﻿<md-dialog aria-label="Feed Modal">
     <form ng-cloak name="feedForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2 class="white-color">{{"COURSE_EDIT_MODAL_TITLE" | translate}}</h2>
+                <h2 class="white-color">{{"FEED_DETAILS_MODAL_TITLE" | translate}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
@@ -14,10 +14,57 @@
         </md-toolbar>
 
         <md-dialog-content>
-            <div class="md-dialog-content">
-
-           
-
+            <div class="md-dialog-content" style="width: 600px">
+                <div>
+                    <table class="table-full-width">
+                        <tr>
+                            <td style="width:1%">
+                                <img width="250" ng-src="{{feed.PostPicture}}" />
+                            </td>
+                            <td style="width: 99%; vertical-align: top">
+                                <table class="table-full-width">
+                                    <tr>
+                                        <td colspan="2" style="padding-bottom: 10px">
+                                            {{feed.Message || '-'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"FB_CREATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.FbCreatedTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"FB_UPDATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.FbUpdatedTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"CREATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.TimeCreaded | formatJsonDateTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"UPDATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.TimeUpdated | formatJsonDateTime}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </md-dialog-content>
 

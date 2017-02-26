@@ -6,6 +6,8 @@ fbcApp.controller("feedDetailsModalController", [
         $scope.modalTitle = TW.Utils.LocalizedString("COURSE_EDIT_MODAL_TITLE");
         $scope.feed = feed;
 
+        console.log(feed);
+
         $scope.cancel = function () {
             $mdDialog.cancel();
         };

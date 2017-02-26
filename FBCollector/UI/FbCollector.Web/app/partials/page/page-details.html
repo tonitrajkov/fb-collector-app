@@ -27,70 +27,70 @@
         </md-card>
     </div>
 
-   <div flex="35">
-    <!-- Recent replies -->
-    <md-card>
-        <md-card-title>
-            <md-card-title-text>
-                <div class="card-header">
-                    <h2>
-                        {{"RECENT_REPLIES" | translate}}
-                        <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
-                    </h2>
-                </div>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <md-list>
-                <md-list-item class="md-3-line"
-                              ng-if="courseRecentReplies.length == 0"
-                              style="padding: 5px 25px; min-height: 30px; height: 30px">
-                    <md-divider style="top: 0; bottom: inherit;"></md-divider>
-                    <div class="md-list-item-text">
-                        <h3>
-                            <small>
-                                <ng-md-icon icon="info_outline" style="fill: #AEAEAE; padding-top:2px" size="20"></ng-md-icon>
-
-                                {{"NO_DAТА_TO_SHOW" | translate}}
-                            </small>
-                        </h3>
+    <div flex="35">
+        <!-- Recent replies -->
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"RECENT_REPLIES" | translate}}
+                            <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
+                        </h2>
                     </div>
-                </md-list-item>
-                <md-list-item class="md-3-line" ng-repeat="reply in courseRecentReplies" style="padding: 0">
-                    <div layout="row" style="width: 100%;">
-                        <div flex="15">
-                            <a href="" ui-sref="profile({userId: reply.RepliedBy.Id})">
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <md-list>
+                    <md-list-item class="md-3-line"
+                                  ng-if="courseRecentReplies.length == 0"
+                                  style="padding: 5px 25px; min-height: 30px; height: 30px">
+                        <md-divider style="top: 0; bottom: inherit;"></md-divider>
+                        <div class="md-list-item-text">
+                            <h3>
+                                <small>
+                                    <ng-md-icon icon="info_outline" style="fill: #AEAEAE; padding-top:2px" size="20"></ng-md-icon>
 
-                                <img class="member-thumb"
-                                     ng-src="{{reply.RepliedBy.ProfilePicture}}"
-                                     ng-if="reply.RepliedBy.ProfilePicture" style="width: 35px; height: 35px; border-radius: 70px">
-
-                                <img class="member-thumb"
-                                     src="/Content/img/avatars/no-img.png"
-                                     ng-if="!reply.RepliedBy.ProfilePicture" style="width: 35px; height: 35px; border-radius: 70px;">
-                            </a>
+                                    {{"NO_DAТА_TO_SHOW" | translate}}
+                                </small>
+                            </h3>
                         </div>
-                        <div flex="85">
-                            <div>
-                                <a class="custom-label" href="" ui-sref="profile({userId: reply.RepliedBy.Id})">
-                                    <strong>{{reply.RepliedBy.FullName}}</strong>
+                    </md-list-item>
+                    <md-list-item class="md-3-line" ng-repeat="reply in courseRecentReplies" style="padding: 0">
+                        <div layout="row" style="width: 100%;">
+                            <div flex="15">
+                                <a href="" ui-sref="profile({userId: reply.RepliedBy.Id})">
+
+                                    <img class="member-thumb"
+                                         ng-src="{{reply.RepliedBy.ProfilePicture}}"
+                                         ng-if="reply.RepliedBy.ProfilePicture" style="width: 35px; height: 35px; border-radius: 70px">
+
+                                    <img class="member-thumb"
+                                         src="/Content/img/avatars/no-img.png"
+                                         ng-if="!reply.RepliedBy.ProfilePicture" style="width: 35px; height: 35px; border-radius: 70px;">
                                 </a>
                             </div>
-                            <div style="min-height: 30px; padding-top: 10px">
-                                {{reply.Message | truncateTitle:100}}
+                            <div flex="85">
+                                <div>
+                                    <a class="custom-label" href="" ui-sref="profile({userId: reply.RepliedBy.Id})">
+                                        <strong>{{reply.RepliedBy.FullName}}</strong>
+                                    </a>
+                                </div>
+                                <div style="min-height: 30px; padding-top: 10px">
+                                    {{reply.Message | truncateTitle:100}}
+                                </div>
+                                <md-card-actions layout="row" layout-align="end center" style="margin: 0; padding-right: 8px">
+                                    <a class="custom-label" href="" ui-sref="courseDiscussion({discussionId: reply.ForumTopic.Id})">
+                                        <strong>{{reply.ForumTopic.Title}}</strong>
+                                    </a>
+                                </md-card-actions>
                             </div>
-                            <md-card-actions layout="row" layout-align="end center" style="margin: 0; padding-right: 8px">
-                                <a class="custom-label" href="" ui-sref="courseDiscussion({discussionId: reply.ForumTopic.Id})">
-                                    <strong>{{reply.ForumTopic.Title}}</strong>
-                                </a>
-                            </md-card-actions>
                         </div>
-                    </div>
-                    <md-divider md-inset ng-if="!$last" style="padding: 5px 0;"></md-divider>
-                </md-list-item>
-            </md-list>
-        </md-card-content>
-    </md-card>
+                        <md-divider md-inset ng-if="!$last" style="padding: 5px 0;"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-card-content>
+        </md-card>
     </div>
 </div>
 
@@ -126,7 +126,7 @@
             <span>{{"SEARCH_FILTERS" | translate}}</span>
 
             <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px;">
-                <input ng-model="query.SearchText" style="min-width: 300px; margin-top: 24px"
+                <input ng-model="query.SearchText" style="min-width: 300px; margin-top: 24px" aria-label="Search Input"
                        ng-model-options="{ debounce: 300 }" placeholder="{{searchLabel}}">
             </md-input-container>
 
@@ -151,33 +151,56 @@
         <table data-md-table md-progress="promise">
             <thead ng-if="!options.decapitate" md-head md-on-reorder="onReorder">
                 <tr md-row>
-                    <th md-column style="width: 20%"><span>{{"MESSAGE" | translate}}</span></th>
+                    <th md-column style="width: 48%"><span>{{"MESSAGE" | translate}}</span></th>
+                    <th md-column style="width: 48%"><span>{{"TIME" | translate}}</span></th>
                     <th md-column style="width: 1%"><span>{{"TYPE" | translate}}</span></th>
-                    <th md-column style="width: 2%"><span>{{"FB_CREATED_TIME" | translate}}</span></th>
-                    <th md-column style="width: 2%"><span>{{"FB_UPDATED_TIME" | translate}}</span></th>
-                    <th md-column style="width: 2%"><span>{{"CREATED_TIME" | translate}}</span></th>
-                    <th md-column style="width: 2%"><span>{{"UPDATED_TIME" | translate}}</span></th>
-                    <th md-column style="width: 1%"><span>{{"SHARES" | translate}}</span></th>
-                    <th md-column style="width: 1%"><span>{{"ISUSED" | translate}}</span></th>
                     <th md-column style="width: 1%; text-align: center"><span>{{"ACTIONS_LABEL" | translate}}</span></th>
                 </tr>
             </thead>
             <tbody md-body>
                 <tr md-row data-ng-repeat="feed in feeds">
-                    <td md-cell style="width: 20%">{{feed.Message | truncateTitle:200 }}</td>
-                    <td md-cell style="width: 1%">{{feed.Type}}</td>
-                    <td md-cell style="width: 2%">{{feed.FbCreatedTime}}</td>
-                    <td md-cell style="width: 2%">{{feed.FbUpdatedTime}}</td>
-                    <td md-cell style="width: 2%">{{feed.TimeCreaded | formatJsonDateTime}}</td>
-                    <td md-cell style="width: 2%">{{feed.TimeUpdated | formatJsonDateTime}}</td>
-                    <td md-cell style="width: 1%">{{feed.Shares}}</td>
-                    <td md-cell style="width: 1%">{{feed.IsUsed}}</td>
+                    <td md-cell style="width: 48%">
+                        {{feed.Message | truncateTitle:200 }}
+                    </td>
+                    <td md-cell style="width: 48%">
+                        <table class="table-full-width">
+                            <tr>
+                                <td style="width: 90%">
+                                    <table class="table-full-width">
+                                        <tr>
+                                            <td style="width: 145px">
+                                                <span style="font-weight: bold">
+                                                    {{"FB_CREATED_TIME" | translate}}
+                                                </span>
+                                            </td>
+                                            <td>{{feed.FbCreatedTime}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 145px">
+                                                <span style="font-weight: bold">
+                                                    {{"CREATED_TIME" | translate}}
+                                                </span>
+                                            </td>
+                                            <td>{{feed.TimeCreaded | formatJsonDateTime}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="width: 10%; text-align: center">
+                                    {{feed.TimeCreaded | weekDayFromJsonDateTime}}
+                                </td>
+                            </tr>
+                        </table>
+                       
+                    </td>
+                    <td md-cell style="width: 1%; text-align: center">
+                        {{feed.Type}}
+                    </td>
                     <td md-cell style="width: 1%; text-align: center">
                         <md-button class="md-icon-button" ng-click="openFeedModal($event, feed)">
                             <md-tooltip md-direction="bottom">
-                                {{"EDIT_PAGE" | translate}}
+                                {{"FEED_DETAILS_LABEL" | translate}}
                             </md-tooltip>
-                            <ng-md-icon icon="edit" style="fill: #868686"></ng-md-icon>
+                            <ng-md-icon icon="dehaze" style="fill: #868686"></ng-md-icon>
                         </md-button>
                     </td>
                 </tr>

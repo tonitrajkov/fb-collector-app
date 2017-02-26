@@ -5,12 +5,12 @@ fbcApp.controller("pageModalController", [
     function ($scope, $mdDialog, toastFactory, page, levels, configViewModels, configService) {
 
         $scope.model = new configViewModels.PageModel();
-        $scope.modalTitle = TW.Utils.LocalizedString("COURSE_ADD_MODAL_TITLE");
+        $scope.modalTitle = TW.Utils.LocalizedString("PAGE_ADD_MODAL_TITLE");
         $scope.levels = levels;
 
         if (page) {
             $scope.model = angular.copy(page);
-            $scope.modalTitle = TW.Utils.LocalizedString("COURSE_EDIT_MODAL_TITLE");
+            $scope.modalTitle = TW.Utils.LocalizedString("PAGE_EDIT_MODAL_TITLE");
         }
 
         $scope.cancel = function () {

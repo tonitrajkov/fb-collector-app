@@ -24,7 +24,7 @@ fbcApp.controller("pagesController",
             Importance: null
         };
 
-        $scope.showFilters = false;
+        $scope.showFilters = true;
         $scope.searchLabel = TW.Utils.LocalizedString("SEARCH_BY_TITLE");
 
         $scope.loadPages = function () {
