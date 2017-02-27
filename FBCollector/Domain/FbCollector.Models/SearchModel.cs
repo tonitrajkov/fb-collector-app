@@ -1,4 +1,6 @@
-﻿namespace FbCollector.Models
+﻿using System;
+
+namespace FbCollector.Models
 {
     public class SearchModel
     {
@@ -31,5 +33,13 @@
         public bool? IsUsed { get; set; }
 
         public string Type { get; set; }
+
+        public DateTime? DateFrom { get; set; }
+
+        public DateTime? DateTo { get; set; }
+
+        public bool OrderDescending { get; set; }
+
+        public int? SharesNumber { get; set; }
     }
 }

@@ -47,4 +47,17 @@ fbcApp.filter("translate", [
 
         return value;
     };
-});
+})
+.filter("weekDayFromJsonDateTime", [
+    function () {
+        return function (value) {
+            if (!!!value) {
+                return "/";
+            }
+            var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+            var dt = new Date(parseInt(value.substr(6)));
+
+            return TW.Utils.LocalizedString(days[dt.getDay()]);
+        };
+    }
+]);

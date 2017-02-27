@@ -12,8 +12,8 @@ namespace FbCollector.Domain
         private string _postName;
         private string _fbCreatedTime;
         private string _fbUpdatedTime;
-        private DateTime _timeCreaded;
-        private DateTime _timeUpdated;
+        private DateTime? _timeCreaded;
+        private DateTime? _timeUpdated;
         private int _shares;
         private string _pageId;
         private DateTime _dateImported;
@@ -110,13 +110,13 @@ namespace FbCollector.Domain
             set { _fbUpdatedTime = value; }
         }
 
-        public virtual DateTime TimeCreaded
+        public virtual DateTime? TimeCreaded
         {
             get { return _timeCreaded; }
             set { _timeCreaded = value; }
         }
 
-        public virtual DateTime TimeUpdated
+        public virtual DateTime? TimeUpdated
         {
             get { return _timeUpdated; }
             set { _timeUpdated = value; }

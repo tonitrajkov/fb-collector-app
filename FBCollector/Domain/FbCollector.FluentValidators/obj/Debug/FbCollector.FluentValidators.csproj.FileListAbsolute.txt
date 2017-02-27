@@ -36,7 +36,6 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\D
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\FbCollector.Models.pdb
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\FluentValidation.pdb
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\FluentValidation.xml
-C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\da\FluentValidation.resources.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\de\FluentValidation.resources.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\es\FluentValidation.resources.dll
@@ -54,3 +53,4 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\D
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\Newtonsoft.Json.xml

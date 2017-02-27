@@ -5,12 +5,14 @@ namespace FbCollector.Intefraces
 {
     public interface IPageFeedService
     {
-        void CreatePageFeed(List<PageFeedModel> feeds);
+        void CreatePageFeed(List<FbFeedModel> feeds, string pageUrlId);
 
         void DeletePageFeed(int feedId);
 
         SearchResult<PageFeedModel> GetPageFeedsFiltered(PageFeedSearchModel model);
 
         void SetFeedAsUsed(int feedId);
+
+        long? GetLastPageFeedDate(string pageUrlId);
     }
 }

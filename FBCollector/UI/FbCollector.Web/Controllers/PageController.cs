@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using FbCollector.Infrastructure.Helpers;
@@ -72,7 +74,7 @@ namespace FbCollector.Web.Controllers
         [HttpPost]
         public JsonResult GetPageById(int pageId)
         {
-           var page = _pageService.GetPageById(pageId);
+            var page = _pageService.GetPageById(pageId);
             return Json(page);
         }
     }

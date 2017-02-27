@@ -132,7 +132,6 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\U
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\UI\FbCollector.Web\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\UI\FbCollector.Web\bin\NHibernate.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\UI\FbCollector.Web\bin\System.Web.Helpers.xml
-C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\UI\FbCollector.Web\bin\System.Web.Mvc.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\UI\FbCollector.Web\bin\System.Web.Razor.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\UI\FbCollector.Web\bin\System.Web.WebPages.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\UI\FbCollector.Web\bin\System.Web.WebPages.Deployment.xml

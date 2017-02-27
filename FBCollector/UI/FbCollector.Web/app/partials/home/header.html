@@ -5,10 +5,37 @@
                    class="md-icon-button" aria-label="Toggle Button">
             <ng-md-icon icon="menu" style="fill: white"></ng-md-icon>
         </md-button>
-        <img src="/Content/img/logo-short.png" width="60" height="50" />
-        <h2 class="md-display-1">
+        <img src="/Content/img/filter-logo.png" width="145" height="65" />
+        <h2 class="md-display-1" style="padding-left: 25px">
             <span class="white-color">{{"HEADER_LOGO_TEXT" | translate}}</span>
         </h2>
         <span flex></span>
+        <!-- Language options -->
+        <md-menu md-position-mode="target-right target">
+            <button class="language-button md-button md-default-theme md-ink-ripple" type="button" ng-click="$mdOpenMenu()">
+                <div layout="row" layout-align="center center" class="layout-align-center-center layout-row">
+                    <img class="flag"
+                         ng-src="{{currentLanguage.Code == 'MK' ? '/Content/img/flags/mk.png':(currentLanguage.Code == 'EN' ? '/Content/img/flags/en.png' : '/Content/img/flags/sq.png')}}">
+                    <span class="iso white-color">{{currentLanguage.Title}}</span>
+                    <ng-md-icon icon="arrow_drop_down" style="fill: white" size="20"></ng-md-icon>
+                </div>
+                <div class="md-ripple-container"></div>
+            </button>
+            <md-menu-content width="1">
+                <md-menu-item ng-repeat="language in languages">
+                    <button ng-click="changeLanguage(language)"
+                            class="md-button ng-scope md-default-theme md-ink-ripple"
+                            type="button"
+                            role="menuitem">
+                        <span layout="row" layout-align="start center" class="layout-align-start-center layout-row">
+                            <img class="flag"
+                                 ng-src="{{language.Code == 'MK' ? '/Content/img/flags/mk.png':(language.Code == 'EN' ? '/Content/img/flags/en.png' : '/Content/img/flags/sq.png')}}">
+                            <span>{{language.Title}}</span>
+                        </span>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </div>
 </md-toolbar>

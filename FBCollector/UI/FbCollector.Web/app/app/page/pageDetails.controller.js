@@ -2,8 +2,8 @@
 
 fbcApp.controller("pageDetailsController",
     [
-        "$scope", "$rootScope", "$mdDialog", "$stateParams", "toastFactory", "pageViewModels", "fbService", "pageService",
-        function ($scope, $rootScope, $mdDialog, $stateParams, toastFactory, pageViewModels, fbService, pageService) {
+        "$scope", "$rootScope", "$mdDialog", "$stateParams", "$localStorage", "toastFactory", "pageViewModels", "fbService", "pageService",
+        function ($scope, $rootScope, $mdDialog, $stateParams, $localStorage, toastFactory, pageViewModels, fbService, pageService) {
 
             $scope.options = {
                 rowSelection: true,
@@ -24,11 +24,14 @@ fbcApp.controller("pageDetailsController",
                 PageUrlId: "",
                 SearchText: "",
                 IsUsed: null,
-                Type: null
+                Type: null,
+                DateFrom: null,
+                DateTo: null,
+                OrderDescending: true,
+                SharesNumber: null
             };
 
-            $scope.lastRun = false;
-            $scope.list = [];
+            $scope.showFilters = true;
 
             var data = { pageId: $stateParams.pageId };
             pageService
@@ -70,66 +73,81 @@ fbcApp.controller("pageDetailsController",
 
             //$scope.loadRecentReplies();
 
-            $scope.synchronizeWithFacebook = function (ev) {
-                fbService.getPageFeed($scope.page.UrlId)
-                   .then(function (response) {
-                       if (response.data) {
-                           savePageFeed(response.data);
-
-                           if (response.paging && response.paging.next !== "undefined") {
-                               fbService.getPageFeedPaging(response.paging.next, callbackFn);
-                           } else {
-                               $scope.lastRun = true;
-                           }
-                       }
-                   });
+            $scope.syncFbModal = function (ev) {
+                $mdDialog.show({
+                    locals: { pageUrlId: $scope.page.UrlId },
+                    controller: "syncFbModalController",
+                    templateUrl: "app/partials/page/sync-fb-modal.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                })
+              .then(function (accessToken) {
+                  if (accessToken) {
+                      $localStorage.accessToken = accessToken;
+                      $scope.reloadTable();
+                  }
+              });
             };
 
-            function savePageFeed(feeds) {
-             //   var list = [];
+            $scope.syncPageFeed = function () {
+                var data = {
+                    pageUrlId: $scope.page.UrlId,
+                    accessToken: $localStorage.accessToken
+                };
 
-                for (var i = 0; i < feeds.length; i++) {
-                    var feed = new pageViewModels.PageFeedModel(feeds[i], $scope.page.UrlId);
-                    try {
-                        feed.Message = feeds[i].message;
-                    } catch (e) {
-                        feed.Message = null;
-                    }
-
-                    $scope.list.push(feed);
-                }
-
-                //var data = {
-                //    feeds: list
-                //};
-                //pageService
-                //    .createPageFeed(data)
-                //     .then(function (result) {
-                //        if ($scope.lastRun)
-                //            toastFactory.simple("DONE");
-                //    });
+                pageService
+                    .syncPageFeed(data)
+                       .then(function (result) {
+                           $scope.reloadTable();
+                       }, function (error) {
+                           $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
+                           toastFactory.simple($scope.ValidationErrors);
+                       });
             };
 
-            function callbackFn(response) {
-                savePageFeed(response.data);
+            $scope.synchronizeWithFacebook = function(ev) {
+                if ($localStorage.accessToken)
+                    $scope.syncPageFeed();
+                else
+                    $scope.syncFbModal(ev);
+            };
 
-                if (response.paging && response.paging.next !== "undefined") {
-                    fbService.getPageFeedPaging(response.paging.next, callbackFn);
-                } else {
-                    $scope.lastRun = true;
-                    var data = {
-                        feeds: $scope.list
-                    };
-                    pageService
-                        .createPageFeed(data)
-                         .then(function (result) {
-                            if ($scope.lastRun)
-                                toastFactory.simple("DONE");
-                        });
-                }
-            }
+            $scope.openFeedModal = function (ev, feed) {
+                $mdDialog.show({
+                    locals: { feed: feed },
+                    controller: "feedDetailsModalController",
+                    templateUrl: "app/partials/page/feed-details-modal.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                })
+                    .then(function () {
+                        $scope.reloadTable();
+                    });
+            };
 
-            $scope.$watchGroup(["query.SearchText"],
+            $scope.reloadTable = function () {
+                $scope.query = {
+                    CurrentPage: 1,
+                    ItemsPerPage: 50,
+                    PageUrlId: $scope.page.UrlId,
+                    SearchText: "",
+                    IsUsed: null,
+                    Type: null,
+                    DateFrom: null,
+                    DateTo: null,
+                    OrderDescending: true,
+                    SharesNumber: null
+                };
+
+                $scope.loadFeeds();
+            };
+
+            $scope.$watchGroup(["query.SearchText", "query.IsUsed", "query.Type", "query.DateFrom",
+                "query.DateTo", "query.OrderDescending", "query.SharesNumber"],
                function (newValues, oldValues) {
                    if (newValues !== oldValues)
                        $scope.loadFeeds();

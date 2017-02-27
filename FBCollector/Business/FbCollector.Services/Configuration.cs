@@ -13,6 +13,8 @@ namespace FbCollector.Services
             container.RegisterType(typeof(IRoleService), typeof(RoleService));
             container.RegisterType(typeof(IPageService), typeof(PageService));
             container.RegisterType(typeof(IPageFeedService), typeof(PageFeedService));
+            container.RegisterType(typeof(IFacebookService), typeof(FacebookService));
+            container.RegisterType(typeof(ILocalizationService), typeof(LocalizationService));
         }
     }
 }

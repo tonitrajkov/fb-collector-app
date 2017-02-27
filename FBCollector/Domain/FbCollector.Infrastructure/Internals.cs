@@ -239,5 +239,14 @@ namespace FbCollector.Infrastructure
             var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
+
+        public static long GetTime(DateTime date)
+        {
+            long retval = 0;
+            var st = new DateTime(1970, 1, 1);
+            var t = (date.ToUniversalTime() - st);
+            retval = (Int64)(t.TotalMilliseconds + 0.5);
+            return retval / 1000;
+        }
     }
 }

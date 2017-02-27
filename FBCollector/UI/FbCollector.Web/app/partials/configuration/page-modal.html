@@ -7,7 +7,7 @@
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
                     <md-tooltip md-direction="bottom">
-                        {{"CLOSE_TOASTER" | translate}}
+                        {{"CLOSE" | translate}}
                     </md-tooltip>
                 </md-button>
             </div>
@@ -38,7 +38,7 @@
 
                 <md-input-container class="md-icon-float md-block"
                                     ng-class="(model.Errors != null && model.Errors.Url) ? 'md-input-invalid' : ''">
-                    <label>{{"PAGE_URL" | translate}}</label>
+                    <label>{{"URL" | translate}}</label>
                     <input required name="url" ng-model="model.Url" type="text">
                     <div ng-if="model.Errors.Url" class="error-msg">
                         {{model.Errors.Url}}
@@ -47,7 +47,7 @@
 
                 <md-input-container class="md-icon-float md-block"
                                     ng-class="(model.Errors != null && model.Errors.UrlId) ? 'md-input-invalid' : ''">
-                    <label>{{"PAGE_URL_ID" | translate}}</label>
+                    <label>{{"URL_ID" | translate}}</label>
                     <input required name="urlId" ng-model="model.UrlId" type="text">
                     <div ng-if="model.Errors.Url" class="error-msg">
                         {{model.Errors.UrlId}}
@@ -55,12 +55,12 @@
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
-                    <label>{{"PAGE_FB_ID" | translate}}</label>
+                    <label>{{"FB_ID" | translate}}</label>
                     <input name="fbId" ng-model="model.FbId" type="text">
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
-                    <label>{{"PAGE_FB_TYPE" | translate}}</label>
+                    <label>{{"FB_TYPE" | translate}}</label>
                     <input name="fbType" ng-model="model.FbType" type="text">
                 </md-input-container>
 

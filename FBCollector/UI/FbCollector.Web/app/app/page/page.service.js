@@ -31,6 +31,12 @@ fbcApp.factory("pageService", ["repository", function (repository) {
             var url = "/PageFeed/SetFeedAsUsed";
             var result = repository.promisePost(url, data);
             return result;
+        },
+
+        syncPageFeed: function (data) {
+            var url = "/PageFeed/SyncPageFeed";
+            var result = repository.promisePost(url, data);
+            return result;
         }
     };
 }]);

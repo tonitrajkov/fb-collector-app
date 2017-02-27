@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using FbCollector.Domain;
 using FbCollector.Domain.Mapper;
+using FbCollector.Infrastructure;
 using FbCollector.Infrastructure.Helpers;
 using FbCollector.Intefraces;
 using FbCollector.Models;
@@ -23,24 +22,24 @@ namespace FbCollector.Services
             _pageFeedRepository = ServiceLocator.Current.GetInstance<IRepository<PageFeed>>();
         }
 
-        public void CreatePageFeed(List<PageFeedModel> feeds)
+        public void CreatePageFeed(List<FbFeedModel> feeds, string pageUrlId)
         {
             foreach (var item in feeds)
             {
-                var feed = new PageFeed(item.PostId, item.Link, item.Type, item.PageId)
+                var feed = new PageFeed(item.id, item.link, item.type, pageUrlId)
                 {
-                    FbCreatedTime = item.FbCreatedTime,
-                    FbUpdatedTime = item.FbUpdatedTime,
-                    Type = item.Type,
-                    PostName = item.PostName,
-                    PostPicture = item.PostPicture,
-                    Shares = item.Shares,
-                    TimeCreaded = item.TimeCreaded,
-                    TimeUpdated = item.TimeUpdated
+                    FbCreatedTime = item.created_time,
+                    FbUpdatedTime = item.updated_time,
+                    Type = item.type,
+                    PostName = item.name,
+                    PostPicture = item.full_picture,
+                    Shares = (item.shares != null && item.shares.count.HasValue) ? item.shares.count.Value : 0,
+                    TimeCreaded = !string.IsNullOrEmpty(item.created_time) ?
+                                        DateTime.Parse(item.created_time) : (DateTime?)null,
+                    TimeUpdated = !string.IsNullOrEmpty(item.updated_time) ?
+                                        DateTime.Parse(item.updated_time) : (DateTime?)null,
+                    Message = item.message
                 };
-
-                if (!string.IsNullOrEmpty(item.Message))
-                    feed.Message = item.Message;
 
                 _pageFeedRepository.Save(feed);
             }
@@ -74,7 +73,7 @@ namespace FbCollector.Services
 
             Expression<Func<PageFeed, bool>> filter = PredicateBuilder.True<PageFeed>();
 
-            if(string.IsNullOrEmpty(model.PageUrlId))
+            if (string.IsNullOrEmpty(model.PageUrlId))
                 throw new FbException("PAGE_URL_IS_EMPTY");
 
             filter = filter.And(x => x.PageId.ToLower() == model.PageUrlId.ToLower());
@@ -88,12 +87,29 @@ namespace FbCollector.Services
             if (!string.IsNullOrEmpty(model.Type))
                 filter = filter.And(x => x.Type.ToLower() == model.Type.ToLower());
 
+            if (model.DateFrom.HasValue)
+                filter = filter.And(x => x.TimeCreaded.Value >= model.DateFrom.Value);
+
+            if (model.DateTo.HasValue)
+                filter = filter.And(x => x.TimeCreaded.Value <= model.DateTo.Value);
+
+            if (model.SharesNumber.HasValue)
+                filter = filter.And(x => x.Shares >= model.SharesNumber.Value);
+
             query = query.Where(filter);
 
             var totalItems = query.Count();
 
             var start = (model.CurrentPage - 1) * model.ItemsPerPage;
-            var finalQuery = query.OrderBy(x => x.DateImported).Skip(start).Take(model.ItemsPerPage);
+
+            if (model.OrderDescending)
+            {
+                query = query.OrderByDescending(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
+            }
+            else
+            {
+                query = query.OrderBy(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
+            }
 
             var result = new SearchResult<PageFeedModel>
             {
@@ -101,7 +117,7 @@ namespace FbCollector.Services
                 Items = new List<PageFeedModel>()
             };
 
-            foreach (var item in finalQuery)
+            foreach (var item in query)
             {
                 result.Items.Add(item.ToModel());
             }
@@ -118,6 +134,20 @@ namespace FbCollector.Services
             feed.IsUsed = true;
             feed.DateUsed = DateTime.Now;
             _pageFeedRepository.Update(feed);
+        }
+
+        public long? GetLastPageFeedDate(string pageUrlId)
+        {
+            var feed = _pageFeedRepository.Query()
+                        .OrderByDescending(f => f.TimeCreaded)
+                        .FirstOrDefault(f => f.PageId.ToLower() == pageUrlId.ToLower());
+            if (feed == null)
+                return null;
+
+            if (!feed.TimeCreaded.HasValue)
+                return null;
+
+            return Internals.GetTime(feed.TimeCreaded.Value);
         }
     }
 }
