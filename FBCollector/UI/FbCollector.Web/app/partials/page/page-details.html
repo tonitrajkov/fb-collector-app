@@ -103,7 +103,7 @@
 <div>
     <md-toolbar class="md-table-toolbar md-default">
         <div class="md-toolbar-tools">
-            <span> {{"COURSES_TAB_LABEL" | translate}}</span>
+            <span> {{"ALL_FEEDS" | translate}}</span>
 
             <span flex></span>
 
@@ -136,6 +136,35 @@
                     <md-option ng-value="level.Key" ng-repeat="level in levels">{{level.Value}}</md-option>
                 </md-select>
             </md-input-container>-->
+
+            <mdp-date-picker mdp-open-on-click
+                             required
+                             name="dateFrom"
+                             mdp-placeholder=""
+                             mdp-format="DD.MM.YYYY"
+                             mdp-max-date="query.DateTo"
+                             ng-model="query.DateFrom">
+            </mdp-date-picker>
+
+            <mdp-date-picker mdp-open-on-click
+                             required
+                             name="dateFrom"
+                             mdp-placeholder=""
+                             mdp-format="DD.MM.YYYY"
+                             mdp-max-date="query.DateFrom"
+                             ng-model="query.DateTo">
+            </mdp-date-picker>
+
+            <md-switch ng-model="query.IsUsed" aria-label="Used" style="padding-left: 20px">
+                <span ng-if="query.IsUsed == null">{{"ALL_FEEDS" | translate}}</span>
+                <span ng-if="query.IsUsed == true">{{"USED_FEEDS" | translate}}</span>
+                <span ng-if="query.IsUsed == false">{{"UNUSED_FEEDS" | translate}}</span>
+            </md-switch>
+
+            <md-switch ng-model="query.OrderDescending" aria-label="Used" style="padding-left: 20px">
+                <span ng-if="query.OrderDescending == true">{{"DESCENDING" | translate}}</span>
+                <span ng-if="query.OrderDescending == false">{{"ASCENDING" | translate}}</span>
+            </md-switch>
 
             <span flex></span>
 

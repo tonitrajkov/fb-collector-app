@@ -24,11 +24,14 @@ fbcApp.controller("pageDetailsController",
                 PageUrlId: "",
                 SearchText: "",
                 IsUsed: null,
-                Type: null
+                Type: null,
+                DateFrom: null,
+                DateTo: null,
+                OrderDescending: true,
+                SharesNumber: null
             };
 
-            $scope.lastRun = false;
-            $scope.list = [];
+            $scope.showFilters = true;
 
             var data = { pageId: $stateParams.pageId };
             pageService
@@ -129,17 +132,22 @@ fbcApp.controller("pageDetailsController",
             $scope.reloadTable = function () {
                 $scope.query = {
                     CurrentPage: 1,
-                    ItemsPerPage: 15,
+                    ItemsPerPage: 50,
                     PageUrlId: $scope.page.UrlId,
                     SearchText: "",
                     IsUsed: null,
-                    Type: null
+                    Type: null,
+                    DateFrom: null,
+                    DateTo: null,
+                    OrderDescending: true,
+                    SharesNumber: null
                 };
 
                 $scope.loadFeeds();
             };
 
-            $scope.$watchGroup(["query.SearchText"],
+            $scope.$watchGroup(["query.SearchText", "query.IsUsed", "query.Type", "query.DateFrom",
+                "query.DateTo", "query.OrderDescending", "query.SharesNumber"],
                function (newValues, oldValues) {
                    if (newValues !== oldValues)
                        $scope.loadFeeds();

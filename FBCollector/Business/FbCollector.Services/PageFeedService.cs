@@ -87,12 +87,29 @@ namespace FbCollector.Services
             if (!string.IsNullOrEmpty(model.Type))
                 filter = filter.And(x => x.Type.ToLower() == model.Type.ToLower());
 
+            if (model.DateFrom.HasValue)
+                filter = filter.And(x => x.TimeCreaded.Value >= model.DateFrom.Value);
+
+            if (model.DateTo.HasValue)
+                filter = filter.And(x => x.TimeCreaded.Value <= model.DateTo.Value);
+
+            if (model.SharesNumber.HasValue)
+                filter = filter.And(x => x.Shares >= model.SharesNumber.Value);
+
             query = query.Where(filter);
 
             var totalItems = query.Count();
 
             var start = (model.CurrentPage - 1) * model.ItemsPerPage;
-            var finalQuery = query.OrderBy(x => x.DateImported).Skip(start).Take(model.ItemsPerPage);
+
+            if (model.OrderDescending)
+            {
+                query = query.OrderByDescending(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
+            }
+            else
+            {
+                query = query.OrderBy(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
+            }
 
             var result = new SearchResult<PageFeedModel>
             {
@@ -100,7 +117,7 @@ namespace FbCollector.Services
                 Items = new List<PageFeedModel>()
             };
 
-            foreach (var item in finalQuery)
+            foreach (var item in query)
             {
                 result.Items.Add(item.ToModel());
             }
