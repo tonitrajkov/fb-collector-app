@@ -58,9 +58,9 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\B
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\bin\Debug\Microsoft.Practices.Unity.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\bin\Debug\NHibernate.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\bin\Debug\Iesi.Collections.xml
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\obj\Debug\FbCollector.Services.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\obj\Debug\FbCollector.Services.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\obj\Debug\FbCollector.Services.pdb
-C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Business\FbCollector.Services\bin\Debug\Newtonsoft.Json.xml

@@ -5,6 +5,6 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollect
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.Infrastructure\obj\Debug\FbCollector.Infrastructure.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Infrastructure\bin\Debug\FbCollector.Infrastructure.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Infrastructure\bin\Debug\FbCollector.Infrastructure.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Infrastructure\obj\Debug\FbCollector.Infrastructure.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Infrastructure\obj\Debug\FbCollector.Infrastructure.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Infrastructure\obj\Debug\FbCollector.Infrastructure.pdb
-C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.Infrastructure\obj\Debug\FbCollector.Infrastructure.csprojResolveAssemblyReference.cache
