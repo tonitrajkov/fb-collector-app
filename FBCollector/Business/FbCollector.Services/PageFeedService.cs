@@ -102,14 +102,9 @@ namespace FbCollector.Services
 
             var start = (model.CurrentPage - 1) * model.ItemsPerPage;
 
-            if (model.OrderDescending)
-            {
-                query = query.OrderByDescending(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
-            }
-            else
-            {
-                query = query.OrderBy(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
-            }
+            query = model.OrderDescending ? 
+                        query.OrderByDescending(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage) 
+                            : query.OrderBy(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
 
             var result = new SearchResult<PageFeedModel>
             {

@@ -106,7 +106,12 @@
             <span> {{"ALL_FEEDS" | translate}}</span>
 
             <span flex></span>
-
+            <md-button class="md-icon-button" ng-click="reloadTable()">
+                <md-tooltip md-direction="bottom">
+                    {{"RESET_FILTERS_LABEL" | translate}}
+                </md-tooltip>
+                <ng-md-icon icon="refresh" style="fill: #868686" size="24"></ng-md-icon>
+            </md-button>
             <md-button class="md-icon-button" ng-click="showFilters = !showFilters">
                 <md-tooltip md-direction="bottom">
                     {{"SHOW_FILTERS_LABEL" | translate}}
@@ -120,15 +125,64 @@
                 <ng-md-icon icon="sync" style="fill: #868686" size="24"></ng-md-icon>
             </md-button>
         </div>
-        <div class="md-toolbar-tools"
-             style="border-top: 1px solid #E6E6E6; font-size: 15px; "
-             ng-show="showFilters">
-            <span>{{"SEARCH_FILTERS" | translate}}</span>
+        <div class="md-toolbar-tools" ng-show="showFilters" style="border-top: 1px solid #E6E6E6; font-size: 15px; padding: 100px 24px ">
+            <span style="width: 95px; margin-bottom: 60px">{{"SEARCH_FILTERS" | translate}}</span>
 
-            <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px;">
-                <input ng-model="query.SearchText" style="min-width: 300px; margin-top: 24px" aria-label="Search Input"
-                       ng-model-options="{ debounce: 300 }" placeholder="{{searchLabel}}">
-            </md-input-container>
+            <table style="width: 95%">
+                <tr>
+                    <td>
+                        <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px;">
+                            <input ng-model="query.SearchText" style="min-width: 220px; margin-top: 17px" aria-label="Search Input"
+                                   ng-model-options="{ debounce: 300 }" placeholder="{{searchLabel}}">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-datepicker ng-model="query.DateFrom"
+                                       md-max-date="query.DateTo"
+                                       md-placeholder="Date From"></md-datepicker>
+                    </td>
+                    <td>
+                        <md-datepicker ng-model="query.DateTo"
+                                       md-min-date="query.DateFrom"
+                                       md-placeholder="Date To"></md-datepicker>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <md-select ng-model="query.Type" style="min-width: 140px; padding-left:20px" aria-label="Levels">
+                                <md-option ng-value="null"><em>- {{"ALL_LEVELS" | translate}} -</em></md-option>
+                                <md-option ng-value="'link'">Link</md-option>
+                                <md-option ng-value="'photo'">Photo</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-switch ng-model="query.IsUsed" aria-label="Used" style="padding-left: 20px">
+                            <span ng-if="query.IsUsed == null">{{"ALL_FEEDS" | translate}}</span>
+                            <span ng-if="query.IsUsed == true">{{"USED_FEEDS" | translate}}</span>
+                            <span ng-if="query.IsUsed == false">{{"UNUSED_FEEDS" | translate}}</span>
+                        </md-switch>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px;">
+                            <input type="number" ng-model="query.SharesNumber" style="min-width: 220px; margin-top: 17px" aria-label="Search Input"
+                                   ng-model-options="{ debounce: 300 }" placeholder="{{searchLabel}}">
+                        </md-input-container>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <md-switch ng-model="query.OrderDescending" aria-label="Used" style="padding-left: 20px">
+                            <span ng-if="query.OrderDescending == true">{{"DESCENDING" | translate}}</span>
+                            <span ng-if="query.OrderDescending == false">{{"ASCENDING" | translate}}</span>
+                        </md-switch>
+                    </td>
+                </tr>
+            </table>
+
+           
 
             <!--<md-input-container>
                 <md-select ng-model="query.Importance" style="min-width: 140px; padding-left:20px" aria-label="Levels">
@@ -136,44 +190,6 @@
                     <md-option ng-value="level.Key" ng-repeat="level in levels">{{level.Value}}</md-option>
                 </md-select>
             </md-input-container>-->
-
-            <mdp-date-picker mdp-open-on-click
-                             required
-                             name="dateFrom"
-                             mdp-placeholder=""
-                             mdp-format="DD.MM.YYYY"
-                             mdp-max-date="query.DateTo"
-                             ng-model="query.DateFrom">
-            </mdp-date-picker>
-
-            <mdp-date-picker mdp-open-on-click
-                             required
-                             name="dateFrom"
-                             mdp-placeholder=""
-                             mdp-format="DD.MM.YYYY"
-                             mdp-max-date="query.DateFrom"
-                             ng-model="query.DateTo">
-            </mdp-date-picker>
-
-            <md-switch ng-model="query.IsUsed" aria-label="Used" style="padding-left: 20px">
-                <span ng-if="query.IsUsed == null">{{"ALL_FEEDS" | translate}}</span>
-                <span ng-if="query.IsUsed == true">{{"USED_FEEDS" | translate}}</span>
-                <span ng-if="query.IsUsed == false">{{"UNUSED_FEEDS" | translate}}</span>
-            </md-switch>
-
-            <md-switch ng-model="query.OrderDescending" aria-label="Used" style="padding-left: 20px">
-                <span ng-if="query.OrderDescending == true">{{"DESCENDING" | translate}}</span>
-                <span ng-if="query.OrderDescending == false">{{"ASCENDING" | translate}}</span>
-            </md-switch>
-
-            <span flex></span>
-
-            <md-button class="md-icon-button" ng-click="reloadTable()">
-                <md-tooltip md-direction="bottom">
-                    {{"RESET_FILTERS_LABEL" | translate}}
-                </md-tooltip>
-                <ng-md-icon icon="refresh" style="fill: #868686" size="24"></ng-md-icon>
-            </md-button>
         </div>
     </md-toolbar>
     <md-table-container>
