@@ -165,6 +165,7 @@
   <ItemGroup>
     <Content Include="app\app\accountApp.js" />
     <Content Include="app\app\app.js" />
+    <Content Include="app\app\charts\chart.controller.js" />
     <Content Include="app\app\configuration\config.controller.js" />
     <Content Include="app\app\configuration\config.service.js" />
     <Content Include="app\app\configuration\config.viewModels.js" />
@@ -186,6 +187,7 @@
     <Content Include="app\app\page\syncFbModal.controller.js" />
     <Content Include="app\app\utils.js" />
     <Content Include="app\app\fb.service.js" />
+    <Content Include="app\partials\charts\charts.html" />
     <Content Include="app\partials\configuration\configuration.html" />
     <Content Include="app\partials\configuration\page-modal.html" />
     <Content Include="app\partials\configuration\pages.html" />
@@ -247,6 +249,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-chart\angular-chart.js" />
+    <Content Include="Scripts\angular-chart\angular-chart.min.js" />
+    <Content Include="Scripts\angular-chart\Chart.min.js" />
     <Content Include="Scripts\angular-material-calendar\angular-material-calendar.js" />
     <Content Include="Scripts\angular-material-calendar\angular-material-calendar.min.js" />
     <Content Include="Scripts\angular-material\angular-material-icons.js" />
@@ -1043,6 +1048,7 @@
     <Content Include="Scripts\angularjs\angular-sanitize.min.js.map" />
     <Content Include="Scripts\angularjs\angular-touch.min.js.map" />
     <Content Include="Scripts\angularjs\angular.min.js.map" />
+    <Content Include="Scripts\angular-chart\angular-chart.min.js.map" />
     <None Include="Scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery\jquery-1.10.2.min.js" />

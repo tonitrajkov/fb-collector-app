@@ -9,7 +9,8 @@ var fbcApp = angular.module("fbcApp",
      "materialCalendar",
      "mdPickers",
      "ngScrollbars",
-     "ngStorage"])
+     "ngStorage",
+     "chart.js"])
     .config(["$stateProvider", "$urlRouterProvider", "$mdThemingProvider", "$httpProvider",
         function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
@@ -86,6 +87,18 @@ var fbcApp = angular.module("fbcApp",
                     parent: "configuration",
                     data: {
                         displayName: "COURSES_TAB_LABEL"
+                    }
+                })
+                .state("charts", {
+                    url: "/charts",
+                    views: {
+                        'mainView': {
+                            templateUrl: "app/partials/charts/charts.html",
+                            controller: "chartController"
+                        }
+                    },
+                    data: {
+                        displayName: "CHARTS"
                     }
                 })
              .state("notFound", {
