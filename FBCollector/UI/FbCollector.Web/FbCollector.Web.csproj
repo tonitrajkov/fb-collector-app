@@ -229,10 +229,19 @@
     <Content Include="Content\img\covers\cover-6.png" />
     <Content Include="Content\img\covers\cover-7.png" />
     <Content Include="Content\img\covers\cover-8.png" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\filter-logo.png" />
     <Content Include="Content\img\flags\en.png" />
     <Content Include="Content\img\flags\mk.png" />
     <Content Include="Content\img\flags\sq.png" />
+    <Content Include="Content\img\logo-16.png" />
+    <Content Include="Content\img\logo-17.png" />
+    <Content Include="Content\img\logo-18.png" />
+    <Content Include="Content\img\logo-19.png" />
+    <Content Include="Content\img\logo-2.png" />
+    <Content Include="Content\img\logo-20.png" />
+    <Content Include="Content\img\logo-8.png" />
+    <Content Include="Content\img\logo-9.png" />
     <Content Include="Content\img\logo-long-en.png" />
     <Content Include="Content\img\logo-long-mk.png" />
     <Content Include="Content\img\logo-short.png" />
@@ -245,7 +254,6 @@
     <Content Include="Content\md-data-table\md-data-table.css" />
     <Content Include="Content\md-data-table\md-data-table.min.css" />
     <Content Include="Content\ng-img-crop\ng-img-crop.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
