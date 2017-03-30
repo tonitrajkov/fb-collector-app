@@ -81,7 +81,8 @@ namespace FbCollector.Domain.Mapper
                 FbType = page.FbType,
                 Url = page.Url,
                 FbId = page.FbId,
-                Importance = page.Importance
+                Importance = page.Importance,
+                ProfilePicture = page.ProfilePicture
             };
 
             return model;

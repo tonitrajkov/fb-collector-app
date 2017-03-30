@@ -35,6 +35,8 @@ namespace FbCollector.Services
                 domain.FbType = model.FbType;
             if (!string.IsNullOrEmpty(model.FbId))
                 domain.FbId = model.FbId;
+            if (!string.IsNullOrEmpty(model.ProfilePicture))
+                domain.ProfilePicture = model.ProfilePicture;
 
             _pageRepository.Save(domain);
         }
@@ -51,6 +53,7 @@ namespace FbCollector.Services
             page.Url = model.Url;
             page.Title = model.Title;
             page.Importance = model.Importance;
+            page.ProfilePicture = model.ProfilePicture;
 
             _pageRepository.Update(page);
         }

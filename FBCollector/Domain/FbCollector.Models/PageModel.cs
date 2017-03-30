@@ -16,5 +16,7 @@ namespace FbCollector.Models
         public string FbType { get; set; }
 
         public int Importance { get; set; }
+
+        public string ProfilePicture { get; set; }
     }
 }

@@ -36,6 +36,10 @@
       <column name="Importance" sql-type="int" not-null="true"/>
     </property>
 
+    <property name="ProfilePicture" access="field.camelcase-underscore">
+      <column name="ProfilePicture" sql-type="nvarchar" length="1000" not-null="false"/>
+    </property>
+
   </class>
 
 </hibernate-mapping>

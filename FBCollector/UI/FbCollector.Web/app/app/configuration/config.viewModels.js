@@ -31,6 +31,7 @@ fbcApp.factory("configViewModels",
             self.FbId = null;
             self.FbType = null;
             self.Importance = null;
+            self.ProfilePicture = null;
         };
 
         return modelRef;
