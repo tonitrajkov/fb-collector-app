@@ -2,18 +2,49 @@
 
 fbcApp.controller("chartController",
     [
-        "$scope", "$rootScope", "$window",
-        function ($scope, $rootScope, $window) {
-            
+        "$scope", "$rootScope", "$window", "chartService",
+        function ($scope, $rootScope, $window, chartService) {
+
+            $scope.query = {
+                CurrentPage: 1,
+                ItemsPerPage: 50,
+                PageUrlId: "",
+                SearchText: "",
+                IsUsed: null,
+                Type: null,
+                DateFrom: null,
+                DateTo: null,
+                OrderDescending: true,
+                SharesNumber: null,
+                Year: null
+            };
+
+
+            $scope.loadFeeds = function () {
+                chartService
+                    .pageFeedGroupedByHourAndType($scope.query)
+                    .then(function (result) {
+                        if (result) {
+                            $scope.feeds = result.Items;
+                            $scope.totalRecords = result.TotalItems;
+                        }
+                    });
+            };
+
+            $scope.loadFeeds();
+
             $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
             $scope.data = [300, 500, 100];
 
-            $scope.labels1 = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-            $scope.series1 = ['Series A', 'Series B'];
+            $scope.labels1 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'
+            , '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
+            $scope.series1 = ['photo', 'link', 'video', 'status'];
 
             $scope.data1 = [
-              [65, 59, 80, 81, 56, 55, 40],
-              [28, 48, 40, 19, 86, 27, 90]
+              [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40, 56, 55, 40],
+              [28, 48, 40, 19, 86, 27, 90, 28, 48, 40, 19, 86, 27, 90, 28, 48, 40, 19, 86, 27, 90, 86, 27, 90],
+              [18, 4, 10, 79, 56, 17, 60, 18, 4, 10, 79, 56, 17, 60, 18, 4, 10, 79, 56, 17, 60, 56, 17, 60],
+               [28, 48, 40, 19, 86, 27, 90, 28, 48, 40, 19, 86, 507, 90, 28, 48, 40, 19, 86, 27, 90, 86, 27, 90]
             ];
 
             $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];

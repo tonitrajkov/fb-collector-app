@@ -10,6 +10,8 @@ using FbCollector.Intefraces;
 using FbCollector.Models;
 using Microsoft.Practices.ServiceLocation;
 using NHibernateCfg;
+using NHibernate;
+using NHibernate.Transform;
 
 namespace FbCollector.Services
 {
@@ -102,8 +104,8 @@ namespace FbCollector.Services
 
             var start = (model.CurrentPage - 1) * model.ItemsPerPage;
 
-            query = model.OrderDescending ? 
-                        query.OrderByDescending(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage) 
+            query = model.OrderDescending ?
+                        query.OrderByDescending(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage)
                             : query.OrderBy(x => x.TimeCreaded).Skip(start).Take(model.ItemsPerPage);
 
             var result = new SearchResult<PageFeedModel>
@@ -143,6 +145,41 @@ namespace FbCollector.Services
                 return null;
 
             return Internals.GetTime(feed.TimeCreaded.Value);
+        }
+
+        public List<PageFeedChartModel> PageFeedGroupedByHourAndType(PageFeedSearchModel model)
+        {
+            var _nhUnitOfWork = new NhUnitOfWork();
+            _nhUnitOfWork.OpenSession();
+
+            var query = _nhUnitOfWork.Session
+                .GetNamedQuery("PageFeedGroupedByHourAndType");
+
+            if (!string.IsNullOrEmpty(model.PageUrlId))
+                query.SetString("pageId", model.PageUrlId);
+            else query.SetParameter("pageId", null, NHibernateUtil.String);
+
+            if (model.DateFrom.HasValue)
+                query.SetDateTime("dateFrom", model.DateFrom.Value);
+            else query.SetParameter("dateFrom", null, NHibernateUtil.DateTime);
+
+            if (model.DateTo.HasValue)
+                query.SetDateTime("dateTo", model.DateTo.Value);
+            else query.SetParameter("dateTo", null, NHibernateUtil.DateTime);
+
+            if (!string.IsNullOrEmpty(model.Type))
+                query.SetString("postType", model.Type);
+            else query.SetParameter("postType", null, NHibernateUtil.String);
+
+            if (model.Year.HasValue)
+                query.SetInt32("year", model.Year.Value);
+            else query.SetParameter("year", null, NHibernateUtil.Int32);
+
+            query.SetResultTransformer(Transformers.AliasToBean(typeof(PageFeedChartModel)));
+            query.SetReadOnly(true);
+            var result = query.List<PageFeedChartModel>().ToList();
+
+            return result;
         }
     }
 }

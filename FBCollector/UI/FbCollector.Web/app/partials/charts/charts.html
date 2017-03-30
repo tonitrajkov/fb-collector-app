@@ -2,6 +2,26 @@
     <h2>{{"CHARTS" | translate}}</h2>
 </div>
 
+<div>
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <div class="card-header">
+                    <h2>
+                        {{"RECENT_REPLIES" | translate}}
+                        <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
+                    </h2>
+                </div>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <canvas id="bar" class="chart chart-bar"
+                    chart-data="data1" chart-labels="labels1">
+                chart-series="series1"
+            </canvas>
+        </md-card-content>
+    </md-card>
+</div>
 <div layout="row" flex>
     <div flex="50">
         <md-card>
@@ -35,10 +55,10 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <canvas id="bar" class="chart chart-bar"
+                <!--<canvas id="bar" class="chart chart-bar"
                         chart-data="data1" chart-labels="labels1">
                     chart-series="series1"
-                </canvas>
+                </canvas>-->
             </md-card-content>
         </md-card>
     </div>

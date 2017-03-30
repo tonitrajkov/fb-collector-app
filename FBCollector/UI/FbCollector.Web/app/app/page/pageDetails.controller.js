@@ -28,7 +28,8 @@ fbcApp.controller("pageDetailsController",
                 DateFrom: null,
                 DateTo: null,
                 OrderDescending: true,
-                SharesNumber: null
+                SharesNumber: null,
+                Year: null
             };
 
             $scope.showFilters = true;

@@ -41,5 +41,7 @@ namespace FbCollector.Models
         public bool OrderDescending { get; set; }
 
         public int? SharesNumber { get; set; }
+
+        public int? Year { get; set; }
     }
 }

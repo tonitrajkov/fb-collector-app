@@ -166,6 +166,7 @@
     <Content Include="app\app\accountApp.js" />
     <Content Include="app\app\app.js" />
     <Content Include="app\app\charts\chart.controller.js" />
+    <Content Include="app\app\charts\chart.service.js" />
     <Content Include="app\app\configuration\config.controller.js" />
     <Content Include="app\app\configuration\config.service.js" />
     <Content Include="app\app\configuration\config.viewModels.js" />

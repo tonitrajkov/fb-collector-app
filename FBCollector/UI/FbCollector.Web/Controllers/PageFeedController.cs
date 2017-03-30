@@ -61,5 +61,13 @@ namespace FbCollector.Web.Controllers
 
             return Json(true);
         }
+
+        [HttpPost]
+        public JsonResult PageFeedGroupedByHourAndType(PageFeedSearchModel model)
+        {
+            var chartData = _pageFeedService.PageFeedGroupedByHourAndType(model);
+
+            return Json(chartData);
+        }
     }
 }

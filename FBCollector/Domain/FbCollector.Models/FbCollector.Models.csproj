@@ -48,6 +48,7 @@
     <Compile Include="LocalizationModel.cs" />
     <Compile Include="LoggedInUserInfo.cs" />
     <Compile Include="LoginModel.cs" />
+    <Compile Include="PageFeedChartModel.cs" />
     <Compile Include="PageFeedModel.cs" />
     <Compile Include="PageModel.cs" />
     <Compile Include="RoleModel.cs" />

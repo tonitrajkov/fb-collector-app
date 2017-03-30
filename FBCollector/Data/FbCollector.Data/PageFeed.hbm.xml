@@ -19,7 +19,7 @@
     <property name="PostPicture" access="field.camelcase-underscore">
       <column name="PostPicture" sql-type="nvarchar" length="1000" not-null="false"/>
     </property>
-    
+
     <property name="Message" access="field.camelcase-underscore">
       <column name="Message" sql-type="nvarchar" length="1000000" not-null="false"/>
     </property>
@@ -69,5 +69,12 @@
     </property>
 
   </class>
-
+  <sql-query name="PageFeedGroupedByHourAndType">
+    exec  [dbo].[PageFeedGroupedByHourAndType]
+    @pageId = :pageId,
+    @dateFrom = :dateFrom,
+    @dateTo = :dateTo,
+    @postType = :postType,
+    @year = :year
+  </sql-query>
 </hibernate-mapping>
