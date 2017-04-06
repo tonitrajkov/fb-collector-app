@@ -15,6 +15,18 @@ fbcApp.factory("pageService", ["repository", function (repository) {
             return result;
         },
 
+        getPageDetails: function (data) {
+            var url = "/Page/GetPageDetails";
+            var result = repository.promisePost(url, data);
+            return result;
+        },
+
+        getPageFansByCounty: function (data) {
+            var url = "/Page/GetPageFansByCounty";
+            var result = repository.promisePost(url, data);
+            return result;
+        },
+
         getPageFeedsFiltered: function (data) {
             var url = "/PageFeed/GetPageFeedsFiltered";
             var result = repository.promisePost(url, data);

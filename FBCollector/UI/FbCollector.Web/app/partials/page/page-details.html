@@ -1,93 +1,105 @@
-﻿<div class="block-header">
-    <h2>{{page.Title}}</h2>
-</div>
-
-<div layout="row" flex>
-    <div flex="65">
-        <!-- Page content -->
+﻿<div layout="row" flex>
+    <div flex="33">
+        <!-- Page Cover -->
         <md-card>
+            <md-card-content style="padding: 0 !important;">
+                <div style="position: relative">
+                    <div class="page-cover-img-container">
+                        <img ng-src="{{fbPageDetails.cover.source}}" class="page-cover-img" />
+                    </div>
+                    <div class="page-info-wall">
+                        <div class="wall-item">
+                            <span>{{'LIKES' | translate}}:</span> {{pageLikes | number}}
+                        </div>
+                        <div class="wall-item">
+                            <span>{{'TALKING_ABOUT' | translate}}:</span>{{fbPageDetails.talking_about_count | number}}
+                        </div>
+                    </div>
+
+                    <div class="page-title-container">
+                        <a href="{{fbPageDetails.link}}" target="_blank">
+                            <span class="page-title">{{page.Title}}</span>
+                        </a>
+                    </div>
+                    <div class="page-profile-img-container">
+                        <div class="image-container">
+                            <img ng-src="{{page.ProfilePicture}}" class="profile-img" />
+                        </div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div flex="33">
+        <!-- Page Info -->
+        <md-card style="height: 278px;">
             <md-card-title>
                 <md-card-title-text>
                     <div class="card-header">
                         <h2>
-                            {{"COURSE_CONTENT" | translate}}
-                            <small>{{"COURSE_CONTENT_DESCRIPTION" | translate}}</small>
+                            {{"PAGE_INFO" | translate}}
                         </h2>
                     </div>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <div class="course-main-menu">
-                    <a href="" ui-sref="courseForum">
-                        <ng-md-icon icon=" forum" style="fill: #4C4C4C"></ng-md-icon>
-                        <span>{{"NEWS_FORUM" | translate}}</span>
-                    </a>
+                <div style="display: table-cell">
+                    <div style="float: left; margin-top: -2px">
+                        <ng-md-icon icon="info" style="fill: #acacac" size="18"></ng-md-icon>
+                    </div>
+                    <div style="float: left;"> {{"ABOUT" | translate}}</div>
+                </div>
+                <div class="page-info-value">
+                    {{fbPageDetails.about}}
+                </div>
+
+                <div style="display: table-cell">
+                    <div style="float: left; margin-top: -2px">
+                        <ng-md-icon icon="toys" style="fill: #acacac" size="18"></ng-md-icon>
+                    </div>
+                    <div style="float: left;"> {{"CATEGORY" | translate}}</div>
+                </div>
+                <div class="page-info-value">
+                    {{fbPageDetails.category}}
+                </div>
+
+                <div style="display: table-cell">
+                    <div style="float: left; margin-top: -2px">
+                        <ng-md-icon icon="public" style="fill: #acacac" size="18"></ng-md-icon>
+                    </div>
+                    <div style="float: left;"> {{"WEBSITE" | translate}}</div>
+                </div>
+                <div class="page-info-value">
+                    <a target="_blank" href="{{fbPageDetails.website}}">{{fbPageDetails.website}}</a>
                 </div>
             </md-card-content>
         </md-card>
     </div>
 
-    <div flex="35">
-        <!-- Recent replies -->
+    <div flex="33">
+        <!-- Page fans -->
         <md-card>
             <md-card-title>
                 <md-card-title-text>
                     <div class="card-header">
                         <h2>
-                            {{"RECENT_REPLIES" | translate}}
-                            <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
+                            {{"PAGE_FANS" | translate}}
                         </h2>
                     </div>
                 </md-card-title-text>
+                <span flex></span>
+                <a href="" style="margin-top:-10px" class="md-icon-button" ng-click="fansModal($event)">
+                    <md-tooltip md-direction="bottom">
+                        {{"SHOW_ORDERED_LIST" | translate}}
+                    </md-tooltip>
+                    <ng-md-icon icon="format_list_numbered"
+                                style="fill: #868686; margin-bottom: -10px" size="24"></ng-md-icon>
+                </a>
             </md-card-title>
             <md-card-content>
                 <md-list>
-                    <md-list-item class="md-3-line"
-                                  ng-if="courseRecentReplies.length == 0"
-                                  style="padding: 5px 25px; min-height: 30px; height: 30px">
-                        <md-divider style="top: 0; bottom: inherit;"></md-divider>
-                        <div class="md-list-item-text">
-                            <h3>
-                                <small>
-                                    <ng-md-icon icon="info_outline" style="fill: #AEAEAE; padding-top:2px" size="20"></ng-md-icon>
-
-                                    {{"NO_DAТА_TO_SHOW" | translate}}
-                                </small>
-                            </h3>
-                        </div>
-                    </md-list-item>
-                    <md-list-item class="md-3-line" ng-repeat="reply in courseRecentReplies" style="padding: 0">
-                        <div layout="row" style="width: 100%;">
-                            <div flex="15">
-                                <a href="" ui-sref="profile({userId: reply.RepliedBy.Id})">
-
-                                    <img class="member-thumb"
-                                         ng-src="{{reply.RepliedBy.ProfilePicture}}"
-                                         ng-if="reply.RepliedBy.ProfilePicture" style="width: 35px; height: 35px; border-radius: 70px">
-
-                                    <img class="member-thumb"
-                                         src="/Content/img/avatars/no-img.png"
-                                         ng-if="!reply.RepliedBy.ProfilePicture" style="width: 35px; height: 35px; border-radius: 70px;">
-                                </a>
-                            </div>
-                            <div flex="85">
-                                <div>
-                                    <a class="custom-label" href="" ui-sref="profile({userId: reply.RepliedBy.Id})">
-                                        <strong>{{reply.RepliedBy.FullName}}</strong>
-                                    </a>
-                                </div>
-                                <div style="min-height: 30px; padding-top: 10px">
-                                    {{reply.Message | truncateTitle:100}}
-                                </div>
-                                <md-card-actions layout="row" layout-align="end center" style="margin: 0; padding-right: 8px">
-                                    <a class="custom-label" href="" ui-sref="courseDiscussion({discussionId: reply.ForumTopic.Id})">
-                                        <strong>{{reply.ForumTopic.Title}}</strong>
-                                    </a>
-                                </md-card-actions>
-                            </div>
-                        </div>
-                        <md-divider md-inset ng-if="!$last" style="padding: 5px 0;"></md-divider>
-                    </md-list-item>
+                    <canvas id="pie" class="chart chart-pie"
+                            chart-data="data" chart-labels="labels" chart-options="options"></canvas>
                 </md-list>
             </md-card-content>
         </md-card>
@@ -95,15 +107,12 @@
 </div>
 
 
+<!-- Page Feeds-->
 
-<div class="block-header">
-    <h2>{{"FEEDS"}}</h2>
-</div>
-
-<div>
+<div style="padding: 15px 8px">
     <md-toolbar class="md-table-toolbar md-default">
         <div class="md-toolbar-tools">
-            <span> {{"ALL_FEEDS" | translate}}</span>
+            <span> {{"FEEDS" | translate}}</span>
 
             <span flex></span>
             <md-button class="md-icon-button" ng-click="reloadTable()">
@@ -118,7 +127,7 @@
                 </md-tooltip>
                 <ng-md-icon icon="filter_list" style="fill: #868686" size="24"></ng-md-icon>
             </md-button>
-            <md-button class="md-icon-button" ng-click="synchronizeWithFacebook($event)">
+            <md-button class="md-icon-button" ng-click="syncPageFeed()">
                 <md-tooltip md-direction="bottom">
                     {{"SYNC_WITH_FB" | translate}}
                 </md-tooltip>
@@ -182,7 +191,7 @@
                 </tr>
             </table>
 
-           
+
 
             <!--<md-input-container>
                 <md-select ng-model="query.Importance" style="min-width: 140px; padding-left:20px" aria-label="Levels">
@@ -235,7 +244,7 @@
                                 </td>
                             </tr>
                         </table>
-                       
+
                     </td>
                     <td md-cell style="width: 1%; text-align: center">
                         {{feed.Type}}

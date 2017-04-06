@@ -28,10 +28,12 @@ fbcApp.controller("pageDetailsController",
                 DateFrom: null,
                 DateTo: null,
                 OrderDescending: true,
-                SharesNumber: null
+                SharesNumber: null,
+                Year: null
             };
 
-            $scope.showFilters = true;
+            $scope.showFilters = false;
+            $scope.pageLikes = 0;
 
             var data = { pageId: $stateParams.pageId };
             pageService
@@ -39,10 +41,14 @@ fbcApp.controller("pageDetailsController",
                 .then(function (result) {
                     $scope.page = result;
 
+                    $scope.loadPageDetails();
+
                     $scope.query.PageUrlId = result.UrlId;
                     $scope.loadFeeds();
+                    $scope.loadFansByCountry();
                 }, function (error) {
-
+                    $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
+                    toastFactory.simple($scope.ValidationErrors);
                 });
 
             $scope.loadFeeds = function () {
@@ -53,48 +59,69 @@ fbcApp.controller("pageDetailsController",
                             $scope.feeds = result.Items;
                             $scope.totalRecords = result.TotalItems;
                         }
+                    }, function (error) {
+                        $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
+                        toastFactory.simple($scope.ValidationErrors);
                     });
             };
 
-            $scope.loadRecentReplies = function () {
-                //var data = {
-                //    objectId: $stateParams.courseId,
-                //    objectType: 1
-                //};
+            $scope.loadPageDetails = function () {
+                var data = {
+                    pageUrlId: $scope.page.UrlId
+                };
 
-                //courseService
-                //    .getRecentReplies(data)
-                //    .then(function (result) {
-                //        if (result) {
-                //            $scope.courseRecentReplies = result;
-                //        }
-                //    });
+                pageService
+                    .getPageDetails(data)
+                       .then(function (result) {
+                           $scope.fbPageDetails = result;
+                       }, function (error) {
+                           $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
+                           toastFactory.simple($scope.ValidationErrors);
+                       });
             };
 
-            //$scope.loadRecentReplies();
+            $scope.loadFansByCountry = function () {
+                var data = {
+                    pageUrlId: $scope.page.UrlId
+                };
 
-            $scope.syncFbModal = function (ev) {
-                $mdDialog.show({
-                    locals: { pageUrlId: $scope.page.UrlId },
-                    controller: "syncFbModalController",
-                    templateUrl: "app/partials/page/sync-fb-modal.html",
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-              .then(function (accessToken) {
-                  if (accessToken) {
-                      $localStorage.accessToken = accessToken;
-                      $scope.reloadTable();
-                  }
-              });
+                pageService
+                  .getPageFansByCounty(data)
+                        .then(function (result) {
+                            $scope.fansData = angular.fromJson(result);
+
+                            if ($scope.fansData.data != null && $scope.fansData.data.length > 0) {
+                                var data = $scope.fansData.data[0];
+                                if (data.values != null && data.values.length > 0) {
+                                    var len = data.values.length;
+                                    var values = data.values[len - 1];
+                                    var labels = [];
+                                    var chartData = [];
+                                    var obj = values.value;
+                                    var fansNumber = 0;
+
+                                    for (var name in obj) {
+                                        labels.push(name);
+                                        var value = obj[name];
+                                        chartData.push(value);
+                                        fansNumber += value;
+                                    }
+
+                                    $scope.labels = labels;
+                                    $scope.data = chartData;
+                                    $scope.pageLikes = fansNumber;
+                                }
+                            }
+
+                        }, function (error) {
+                            $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
+                            toastFactory.simple($scope.ValidationErrors);
+                        });
             };
 
             $scope.syncPageFeed = function () {
                 var data = {
-                    pageUrlId: $scope.page.UrlId,
-                    accessToken: $localStorage.accessToken
+                    pageUrlId: $scope.page.UrlId
                 };
 
                 pageService
@@ -107,11 +134,19 @@ fbcApp.controller("pageDetailsController",
                        });
             };
 
-            $scope.synchronizeWithFacebook = function(ev) {
-                if ($localStorage.accessToken)
-                    $scope.syncPageFeed();
-                else
-                    $scope.syncFbModal(ev);
+            $scope.fansModal = function (ev) {
+                $mdDialog.show({
+                    locals: { fansData: $scope.fansData },
+                    controller: "fansModalController",
+                    templateUrl: "app/partials/page/fans-modal.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                })
+              .then(function () {
+                  // dismiss
+              });
             };
 
             $scope.openFeedModal = function (ev, feed) {
@@ -130,18 +165,18 @@ fbcApp.controller("pageDetailsController",
             };
 
             $scope.reloadTable = function () {
-                $scope.query = {
-                    CurrentPage: 1,
-                    ItemsPerPage: 50,
-                    PageUrlId: $scope.page.UrlId,
-                    SearchText: "",
-                    IsUsed: null,
-                    Type: null,
-                    DateFrom: null,
-                    DateTo: null,
-                    OrderDescending: true,
-                    SharesNumber: null
-                };
+                //$scope.query = {
+                //    CurrentPage: 1,
+                //    ItemsPerPage: 50,
+                //    PageUrlId: $scope.page.UrlId,
+                //    SearchText: "",
+                //    IsUsed: null,
+                //    Type: null,
+                //    DateFrom: null,
+                //    DateTo: null,
+                //    OrderDescending: true,
+                //    SharesNumber: null
+                //};
 
                 $scope.loadFeeds();
             };

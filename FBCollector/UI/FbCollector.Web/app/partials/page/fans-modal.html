@@ -2,7 +2,7 @@
     <form ng-cloak name="fbForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2 class="white-color">{{"FB_SYNC_MODAL_TITLE" | translate}}</h2>
+                <h2 class="white-color">{{"FANS_MODAL_TITLE" | translate}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
@@ -15,25 +15,20 @@
 
         <md-dialog-content>
             <div class="md-dialog-content">
-
-                <md-input-container class="md-icon-float md-block"
-                                    ng-class="(ValidationErrors) ? 'md-input-invalid' : ''">
-                    <label>{{"ACCESSTOKEN" | translate}}</label>
-                    <textarea required name="title" ng-model="accessToken"></textarea>
-                    <div ng-if="ValidationErrors" class="error-msg">
-                        {{ValidationErrors}}
-                    </div>
-                </md-input-container>
-
+                <md-list>
+                    <md-list-item style="min-height: 30px; height: 30px" class="md-2-line" 
+                                  ng-repeat="fan in fans | orderBy:'fan.number'">
+                        <div class="md-list-item-text">
+                            <p>{{$index + 1}}. {{fan.name}} : {{fan.number}}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
             </div>
         </md-dialog-content>
 
         <md-dialog-actions layout="row">
-            <md-button class="md-raised md-primary white-color" ng-click="confirm(fbForm)">
+            <md-button class="md-raised md-primary white-color" ng-click="confirm()">
                 {{"MODAL_CONFIRM_BUTTON" | translate}}
-            </md-button>
-            <md-button class="md-raised" ng-click="cancel()">
-                {{"MODAL_CANCEL_BUTTON" | translate}}
             </md-button>
         </md-dialog-actions>
     </form>

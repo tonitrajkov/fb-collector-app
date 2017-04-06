@@ -20,6 +20,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/Content/img/favicon.ico" />
 
     <!-- Angular Material style sheet -->
     <link href="@string.Format("{0}", Url.Content("~/Content/angular-material/angular-material.min.css"))" rel="stylesheet" type="text/css" />
@@ -70,6 +71,8 @@
     <script src="@string.Format("{0}", Url.Content("~/Scripts/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/Scripts/scrollbars.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/Scripts/ngStorage/ngStorage.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angular-chart/Chart.min.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/Scripts/angular-chart/angular-chart.min.js"))"></script>
 
     <script src="@string.Format("{0}", Url.Content("~/app/app/app.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/app/app/utils.js"))"></script>
@@ -91,7 +94,7 @@
     <script src="@string.Format("{0}", Url.Content("~/app/app/page/page.service.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/app/app/page/page.viewModel.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/app/app/page/pageDetails.controller.js"))"></script>
-    <script src="@string.Format("{0}", Url.Content("~/app/app/page/syncFbModal.controller.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/page/fansModal.controller.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/app/app/page/feedDetailsModal.controller.js"))"></script>
 
     @*Configuration*@
@@ -102,6 +105,10 @@
     <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/userModal.controller.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/pages.controller.js"))"></script>
     <script src="@string.Format("{0}", Url.Content("~/app/app/configuration/pageModal.controller.js"))"></script>
+
+    @*Charts*@
+    <script src="@string.Format("{0}", Url.Content("~/app/app/charts/chart.service.js"))"></script>
+    <script src="@string.Format("{0}", Url.Content("~/app/app/charts/chart.controller.js"))"></script>
 
     <div id="fb-root"></div>
 </body>

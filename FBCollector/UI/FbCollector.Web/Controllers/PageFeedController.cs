@@ -48,8 +48,8 @@ namespace FbCollector.Web.Controllers
             if (string.IsNullOrEmpty(pageUrlId))
                 throw new FbException("PAGE_URLID_IS_REQURED");
 
-            if (string.IsNullOrEmpty(accessToken))
-                throw new FbException("ACCESTOKEN_IS_REQURED");
+            //if (string.IsNullOrEmpty(accessToken))
+            //    throw new FbException("ACCESTOKEN_IS_REQURED");
 
             var since = string.Empty;
             var sinceDate = _pageFeedService.GetLastPageFeedDate(pageUrlId);
@@ -60,6 +60,14 @@ namespace FbCollector.Web.Controllers
             _facebookService.GetPageFeed(accessToken, pageUrlId, args);
 
             return Json(true);
+        }
+
+        [HttpPost]
+        public JsonResult PageFeedGroupedByHourAndType(PageFeedSearchModel model)
+        {
+            var chartData = _pageFeedService.PageFeedGroupedByHourAndType(model);
+
+            return Json(chartData);
         }
     }
 }
