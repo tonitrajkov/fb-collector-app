@@ -40,8 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangePasswordModel.cs" />
+    <Compile Include="FbModels\FbAccessTokenModel.cs" />
     <Compile Include="FbModels\FbFeedModel.cs" />
     <Compile Include="FbModels\FbFeedResponseModel.cs" />
+    <Compile Include="FbModels\FbPageModel.cs" />
     <Compile Include="FbModels\FbPagingModel.cs" />
     <Compile Include="ImportanceLevel.cs" />
     <Compile Include="LanguageModel.cs" />

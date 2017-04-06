@@ -48,8 +48,8 @@ namespace FbCollector.Web.Controllers
             if (string.IsNullOrEmpty(pageUrlId))
                 throw new FbException("PAGE_URLID_IS_REQURED");
 
-            if (string.IsNullOrEmpty(accessToken))
-                throw new FbException("ACCESTOKEN_IS_REQURED");
+            //if (string.IsNullOrEmpty(accessToken))
+            //    throw new FbException("ACCESTOKEN_IS_REQURED");
 
             var since = string.Empty;
             var sinceDate = _pageFeedService.GetLastPageFeedDate(pageUrlId);

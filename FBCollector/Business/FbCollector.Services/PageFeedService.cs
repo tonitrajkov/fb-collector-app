@@ -179,6 +179,15 @@ namespace FbCollector.Services
             query.SetReadOnly(true);
             var result = query.List<PageFeedChartModel>().ToList();
 
+            var chartResult = new BarChartResultModel();
+
+            foreach (var item in result)
+            {
+               chartResult.Data.Add(item.Total);
+               chartResult.Labels.Add(item.PublishedOn.ToString());
+               chartResult.Series.Add(item.PostType);
+            }
+
             return result;
         }
     }

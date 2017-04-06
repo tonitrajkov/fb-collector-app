@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FbCollector.Models;
 
 namespace FbCollector.Intefraces
 {
@@ -9,5 +10,11 @@ namespace FbCollector.Intefraces
         Task PostAsync(string accessToken, string endpoint, object data, string args = null);
 
         void GetPageFeed(string accessToken, string endpoint, string args = null);
+
+        FbPageModel GetPageDetails(string endpoint, string args = null);
+
+        FbAccessTokenModel GetAccessToken(string graphVersion = null);
+
+        string GetPageFansByCounty(string endpoint);
     }
 }

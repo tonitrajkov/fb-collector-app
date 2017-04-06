@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using FbCollector.Infrastructure.Helpers;
 using FbCollector.Intefraces;
 using FbCollector.Models;
 using Newtonsoft.Json;
@@ -55,8 +56,12 @@ namespace FbCollector.Services
 
         public void GetPageFeed(string accessToken, string endpoint, string args = null)
         {
-            _pageUrlId = endpoint;            
-            var param = string.Format("{0}/{1}&access_token={2}", endpoint, args, accessToken);
+            var accessTokenModel = GetAccessToken();
+            if (accessTokenModel == null)
+                throw new FbException("CAN_NOT_GET_ACCESS_TOKEN");
+
+            _pageUrlId = endpoint;
+            var param = string.Format("v2.3/{0}/{1}&access_token={2}", endpoint, args, accessTokenModel.access_token);
 
             var response = _httpClient.GetAsync(param).Result;
             if (!response.IsSuccessStatusCode)
@@ -104,6 +109,73 @@ namespace FbCollector.Services
             var json = JsonConvert.SerializeObject(data);
 
             return new StringContent(json, Encoding.UTF8, "application/json");
+        }
+
+        public FbPageModel GetPageDetails(string endpoint, string args = null)
+        {
+            var accessTokenModel = GetAccessToken("v2.3");
+            if (accessTokenModel == null)
+                throw new FbException("CAN_NOT_GET_ACCESS_TOKEN");
+
+            _pageUrlId = endpoint;
+            var param = string.Format("v2.3/{0}?{1}&access_token={2}", endpoint, args, accessTokenModel.access_token);
+
+            var response = _httpClient.GetAsync(param).Result;
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var jsonResult = response.Content.ReadAsStringAsync().Result;
+            var model = JsonConvert.DeserializeObject<FbPageModel>(jsonResult);
+
+            return model;
+        }
+
+        public FbAccessTokenModel GetAccessToken(string graphVersion = null)
+        {
+            using (var client = new HttpClient())
+            {
+                var url = string.Format("https://graph.facebook.com/{0}/oauth/access_token", graphVersion);
+
+                var requestParams = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("client_id", "1938500843049334"),
+                    new KeyValuePair<string, string>("client_secret", "045a4026b38dde702b031e2e232987fa"),
+                    new KeyValuePair<string, string>("grant_type", "client_credentials")
+                };
+                var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
+
+                var response = client.PostAsync(url, requestParamsFormUrlEncoded).Result;
+            //var param = string.Format("v2.3/oauth/access_token?grant_type=fb_exchange_token&client_id={0}&client_secret={1}&fb_exchange_token={2}",
+            //    "1938500843049334", "045a4026b38dde702b031e2e232987fa",
+            //    "EAAbjDmYlkXYBAGEHAhvZBnC19qx9lOW6kDNqnblYri1wlsZAHYvawKe8VBYJdfqWN05kjzGRmXAiuCFXDLLWY3pgps2iYrEfbIOdLeCg9p9EmlqqGNvtSz8zEOJzzakevMcU2ENCYTgpV2qfrYcKNwBHuWAeLAHxeNp5lpJyBNJp2zK3ErWmvZCBtTPr48ZD");
+
+            //var response = _httpClient.GetAsync(param).Result;
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var jsonResult = response.Content.ReadAsStringAsync().Result;
+            var model = JsonConvert.DeserializeObject<FbAccessTokenModel>(jsonResult);
+
+            return model;
+            }
+        }
+
+        public string GetPageFansByCounty(string endpoint)
+        {
+            var accessTokenModel = GetAccessToken();
+            if (accessTokenModel == null)
+                throw new FbException("CAN_NOT_GET_ACCESS_TOKEN");
+
+            _pageUrlId = endpoint;
+            var param = string.Format("{0}/insights/page_fans_country?access_token={1}", endpoint, accessTokenModel.access_token);
+
+            var response = _httpClient.GetAsync(param).Result;
+            if (!response.IsSuccessStatusCode)
+                return string.Empty;
+
+            var jsonResult = response.Content.ReadAsStringAsync().Result;
+
+            return jsonResult;
         }
     }
 }

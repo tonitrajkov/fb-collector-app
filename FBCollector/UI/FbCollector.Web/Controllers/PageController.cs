@@ -14,10 +14,12 @@ namespace FbCollector.Web.Controllers
     public class PageController : BaseController
     {
         private readonly IPageService _pageService;
+        private readonly IFacebookService _facebookService;
 
-        public PageController(IPageService pageService)
+        public PageController(IPageService pageService, IFacebookService facebookService)
         {
             _pageService = pageService;
+            _facebookService = facebookService;
         }
 
         [HttpPost]
@@ -76,6 +78,30 @@ namespace FbCollector.Web.Controllers
         {
             var page = _pageService.GetPageById(pageId);
             return Json(page);
+        }
+
+        [HttpPost]
+        public JsonResult GetPageDetails(string pageUrlId)
+        {
+            if (string.IsNullOrEmpty(pageUrlId))
+                throw new FbException("PAGE_URLID_IS_REQURED");
+
+            var args =
+                "fields=id,about,category,checkins,cover,description,founded,likes,link,name,username,talking_about_count,website";
+            var pageDetails = _facebookService.GetPageDetails(pageUrlId, args);
+
+            return Json(pageDetails);
+        }
+
+        [HttpPost]
+        public JsonResult GetPageFansByCounty(string pageUrlId)
+        {
+            if (string.IsNullOrEmpty(pageUrlId))
+                throw new FbException("PAGE_URLID_IS_REQURED");
+
+            var result =_facebookService.GetPageFansByCounty(pageUrlId);
+
+            return Json(result);
         }
     }
 }
