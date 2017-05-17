@@ -27,7 +27,7 @@ fbcApp.controller("pageDetailsController",
                 Type: null,
                 DateFrom: null,
                 DateTo: null,
-                OrderDescending: true,
+                OrderDescending: false,
                 SharesNumber: null,
                 Year: null
             };
@@ -94,7 +94,19 @@ fbcApp.controller("pageDetailsController",
                                 var data = $scope.fansData.data[0];
                                 if (data.values != null && data.values.length > 0) {
                                     var len = data.values.length;
-                                    var values = data.values[len - 1];
+                                    var values = null;
+
+                                    for (var i = len - 1; i >= 0; i--) {
+                                        var pomValues = data.values[i];
+                                        if (pomValues.hasOwnProperty("value")) {
+                                            values = pomValues;
+                                            break;
+                                        }
+                                    }
+                                    if (!values) {
+                                        console.log("No values was founded");
+                                        return;
+                                    }
                                     var labels = [];
                                     var chartData = [];
                                     var obj = values.value;
@@ -162,6 +174,10 @@ fbcApp.controller("pageDetailsController",
                     .then(function () {
                         $scope.reloadTable();
                     });
+            };
+
+            $scope.onPaginate = function (page, limit) {
+                $scope.loadFeeds();
             };
 
             $scope.reloadTable = function () {

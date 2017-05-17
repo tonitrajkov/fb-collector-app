@@ -9,7 +9,19 @@ fbcApp.controller("fansModalController", [
             var data = fansData.data[0];
             if (data.values != null && data.values.length > 0) {
                 var len = data.values.length;
-                var values = data.values[len - 1];
+                var values = null;
+
+                for (var i = len - 1; i >= 0; i--) {
+                    var pomValues = data.values[i];
+                    if (pomValues.hasOwnProperty("value")) {
+                        values = pomValues;
+                        break;
+                    }
+                }
+                if (!values) {
+                    console.log("No values was founded");
+                    return;
+                }
 
                 var list = [];
                 angular.forEach(values.value, function (value, key) {
