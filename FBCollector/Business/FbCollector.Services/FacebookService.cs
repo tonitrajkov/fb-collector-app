@@ -177,5 +177,34 @@ namespace FbCollector.Services
 
             return jsonResult;
         }
+
+        public void ReIndexFeedImages(string endpoint, string args = null)
+        {
+            var accessTokenModel = GetAccessToken();
+            if (accessTokenModel == null)
+                throw new FbException("CAN_NOT_GET_ACCESS_TOKEN");
+
+            _pageUrlId = endpoint;
+            var param = string.Format("v2.3/{0}/{1}&access_token={2}", endpoint, args, accessTokenModel.access_token);
+
+            var response = _httpClient.GetAsync(param).Result;
+            if (!response.IsSuccessStatusCode)
+                return;
+
+            var jsonResult = response.Content.ReadAsStringAsync().Result;
+            var model = JsonConvert.DeserializeObject<FbFeedResponseModel>(jsonResult);
+
+            if (model.data != null && model.data.Any())
+            {
+                _feeds.AddRange(model.data);
+            }
+
+            if (model.paging != null && model.paging.next != null)
+            {
+                GetPageFeedPaging(model.paging.next);
+            }
+
+            _pageFeedService.UpdatePageFeedImage(_feeds, _pageUrlId);
+        }
     }
 }

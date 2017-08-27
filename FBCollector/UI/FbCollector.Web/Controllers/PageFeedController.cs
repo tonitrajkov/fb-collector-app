@@ -63,6 +63,23 @@ namespace FbCollector.Web.Controllers
         }
 
         [HttpPost]
+        public JsonResult ReIndexFeedImages(string pageUrlId)
+        {
+            if (string.IsNullOrEmpty(pageUrlId))
+                throw new FbException("PAGE_URLID_IS_REQURED");
+
+            var until = string.Empty;
+            var untilDate = _pageFeedService.GetLastPageFeedDate(pageUrlId);
+            if (untilDate != null)
+                until = "&until=" + untilDate.ToString();
+
+            var args = "feed?fields=message,id,link,type,full_picture,name,shares,updated_time,created_time" + until + "&limit=100";
+            _facebookService.ReIndexFeedImages(pageUrlId, args);
+
+            return Json(true);
+        }
+
+        [HttpPost]
         public JsonResult PageFeedGroupedByHourAndType(PageFeedSearchModel model)
         {
             var chartData = _pageFeedService.PageFeedGroupedByHourAndType(model);

@@ -49,6 +49,12 @@ fbcApp.factory("pageService", ["repository", function (repository) {
             var url = "/PageFeed/SyncPageFeed";
             var result = repository.promisePost(url, data);
             return result;
+        },
+
+        reindexFeedImages: function (data) {
+            var url = "/PageFeed/ReIndexFeedImages";
+            var result = repository.promisePost(url, data);
+            return result;
         }
     };
 }]);

@@ -190,5 +190,20 @@ namespace FbCollector.Services
 
             return result;
         }
+
+        public void UpdatePageFeedImage(List<FbFeedModel> feeds, string pageUrlId)
+        {
+            foreach (var item in feeds)
+            {
+                var post = _pageFeedRepository.Query()
+                                .FirstOrDefault(p => p.PostId.ToLower() == item.id.ToLower() &&
+                                                p.PageId.ToLower() == pageUrlId.ToLower());
+                if (post != null)
+                {
+                    post.PostPicture = item.full_picture;
+                    _pageFeedRepository.Update(post);
+                }
+            }
+        }
     }
 }

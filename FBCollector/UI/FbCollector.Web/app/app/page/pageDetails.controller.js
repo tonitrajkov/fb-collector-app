@@ -23,8 +23,8 @@ fbcApp.controller("pageDetailsController",
                 ItemsPerPage: 50,
                 PageUrlId: "",
                 SearchText: "",
-                IsUsed: null,
-                Type: null,
+                IsUsed: false,
+                Type: "photo",
                 DateFrom: null,
                 DateTo: null,
                 OrderDescending: false,
@@ -32,15 +32,15 @@ fbcApp.controller("pageDetailsController",
                 Year: null
             };
 
-            $scope.showFilters = false;
+            $scope.showFilters = true;
             $scope.pageLikes = 0;
+            $scope.showSpinner = true;
 
             var data = { pageId: $stateParams.pageId };
             pageService
               .getPageById(data)
                 .then(function (result) {
                     $scope.page = result;
-
                     $scope.loadPageDetails();
 
                     $scope.query.PageUrlId = result.UrlId;
@@ -58,6 +58,7 @@ fbcApp.controller("pageDetailsController",
                         if (result) {
                             $scope.feeds = result.Items;
                             $scope.totalRecords = result.TotalItems;
+                            $scope.showSpinner = false;
                         }
                     }, function (error) {
                         $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
@@ -132,6 +133,7 @@ fbcApp.controller("pageDetailsController",
             };
 
             $scope.syncPageFeed = function () {
+                $scope.showSpinner = true;
                 var data = {
                     pageUrlId: $scope.page.UrlId
                 };
@@ -140,7 +142,27 @@ fbcApp.controller("pageDetailsController",
                     .syncPageFeed(data)
                        .then(function (result) {
                            $scope.reloadTable();
+                           $scope.showSpinner = false;
                        }, function (error) {
+                           $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
+                           toastFactory.simple($scope.ValidationErrors);
+                       });
+            };
+
+            $scope.reindexFeedImages = function () {
+                $scope.showSpinner = true;
+                var data = {
+                    pageUrlId: $scope.page.UrlId
+                };
+
+                pageService
+                    .reindexFeedImages(data)
+                       .then(function (result) {
+                           if (result)
+                               $scope.reloadTable();
+
+                        $scope.showSpinner = false;
+                    }, function (error) {
                            $scope.ValidationErrors = TW.Utils.parseErrors($scope.model, error.data);
                            toastFactory.simple($scope.ValidationErrors);
                        });
@@ -162,6 +184,8 @@ fbcApp.controller("pageDetailsController",
             };
 
             $scope.openFeedModal = function (ev, feed) {
+                ev.stopPropagation();
+                ev.preventDefault();
                 $mdDialog.show({
                     locals: { feed: feed },
                     controller: "feedDetailsModalController",

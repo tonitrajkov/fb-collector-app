@@ -16,5 +16,7 @@ namespace FbCollector.Intefraces
         FbAccessTokenModel GetAccessToken(string graphVersion = null);
 
         string GetPageFansByCounty(string endpoint);
+
+        void ReIndexFeedImages(string endpoint, string args = null);
     }
 }

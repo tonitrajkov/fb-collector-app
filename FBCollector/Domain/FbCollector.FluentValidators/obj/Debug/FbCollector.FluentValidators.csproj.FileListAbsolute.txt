@@ -26,6 +26,7 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollect
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.pdb
+C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\FbCollector.FluentValidators.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\FbCollector.FluentValidators.pdb
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\FbCollector.Infrastructure.dll
@@ -51,6 +52,5 @@ C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\D
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\ru\FluentValidation.resources.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\sv\FluentValidation.resources.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\bin\Debug\tr\FluentValidation.resources.dll
-C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.dll
 C:\Users\Toni\Documents\Visual Studio 2013\Projects\FBCollectorGit\FBCollector\Domain\FbCollector.FluentValidators\obj\Debug\FbCollector.FluentValidators.pdb

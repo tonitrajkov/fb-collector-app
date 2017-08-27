@@ -16,5 +16,7 @@ namespace FbCollector.Intefraces
         long? GetLastPageFeedDate(string pageUrlId);
 
         List<PageFeedChartModel> PageFeedGroupedByHourAndType(PageFeedSearchModel model);
+
+        void UpdatePageFeedImage(List<FbFeedModel> feeds, string pageUrlId);
     }
 }
