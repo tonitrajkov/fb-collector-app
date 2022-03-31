@@ -1,0 +1,114 @@
+﻿<md-dialog aria-label="Feed Modal">
+    <form ng-cloak name="feedForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="white-color">{{"FEED_DETAILS_MODAL_TITLE" | translate}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        {{"CLOSE" | translate}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content" style="width: 600px">
+                <div>
+                    <table class="table-full-width">
+                        <tr>
+                            <td style="width: 1%">
+                                <a href="" ng-href="{{feed.Link}}" target="_blank">
+                                    <img width="250" ng-src="{{feed.PostPicture}}" />
+                                </a>
+                            </td>
+                            <td style="width: 99%; vertical-align: top">
+                                <table class="table-full-width">
+                                    <tr>
+                                        <td colspan="2" style="padding-bottom: 10px">
+                                            {{feed.Message || '-'}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"FB_CREATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.FbCreatedTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"FB_UPDATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.FbUpdatedTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"CREATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.TimeCreaded | formatJsonDateTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"UPDATED_TIME" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.TimeUpdated | formatJsonDateTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"POST_NAME_LABEL" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.PostName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"TYPE" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.Type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"SHARES" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.Shares}}</td>
+                                    </tr>
+                                    <tr ng-if="feed.DateUsed">
+                                        <td style="width: 130px">
+                                            <span style="font-weight: bold">
+                                                {{"USED_ON" | translate}}
+                                            </span>
+                                        </td>
+                                        <td>{{feed.DateUsed | formatJsonDateTime}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary white-color" ng-click="confirm(feedForm)">
+                {{"SET_AS_USED" | translate}}
+            </md-button>
+            <md-button class="md-raised" ng-click="cancel()">
+                {{"CLOSE" | translate}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

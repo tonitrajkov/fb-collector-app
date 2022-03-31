@@ -6,24 +6,24 @@ fbcApp.controller("mainController",
         function ($scope, $rootScope, $window, $mdSidenav, mainService, mainViewModels) {
             $rootScope.userInfo = {};
 
-            //mainService.getLanguage(function (result) {
-            //    if (result) {
-            //        TW.Language = result;
-            //    }
-            //});
+            mainService.getLanguage(function (result) {
+                if (result) {
+                    TW.Language = result;
+                }
+            });
 
-            //mainService.getSupportedLanguages(function (result) {
-            //    if (result) {
-            //        $scope.languages = result;
+            mainService.getSupportedLanguages(function (result) {
+                if (result) {
+                    $scope.languages = result;
 
-            //        angular.forEach($scope.languages, function (language) {
-            //            if (language.CurrentLanguage)
-            //                $scope.currentLanguage = language;
-            //            else if (language.Default)
-            //                $scope.currentLanguage = language;
-            //        });
-            //    }
-            //});
+                    angular.forEach($scope.languages, function (language) {
+                        if (language.IsCurrent)
+                            $scope.currentLanguage = language;
+                        else if (language.IsDefault)
+                            $scope.currentLanguage = language;
+                    });
+                }
+            });
 
             //mainService.getLoggedInUserInfo(function (result) {
             //    $rootScope.userInfo = result;
@@ -71,20 +71,11 @@ fbcApp.controller("mainController",
               );
             };
 
-            // Header ---------------------------
-            $scope.openSearch = function () {
-                angular.element("#header").addClass("search-toggled");
-            };
-
-            $scope.closeSearch = function () {
-                angular.element("#header").removeClass("search-toggled");
-            };
-
             $scope.changeLanguage = function (language) {
                 $scope.currentLanguage = language;
 
                 var data = {
-                    langName: language.Code
+                    langCode: language.Code
                 };
                 mainService
                     .changeLanguage(data)

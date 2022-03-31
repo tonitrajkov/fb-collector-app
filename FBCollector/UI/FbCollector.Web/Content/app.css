@@ -80,6 +80,9 @@ md-input-container {
     min-height: 170px;
 }
 
+md-table-container, .md-table-pagination {
+    background-color: #ffffff;
+}
 /*---------------------------------*/
 
 /* Header */
@@ -346,7 +349,7 @@ md-input-container {
     height: 129px;
     margin-bottom: 5px;
     width: 100%;
-    background: url(/Content/img/covers/cover-2.png) no-repeat left top;
+    background: url(/Content/img/covers/cover-6.png) no-repeat left top;
     -ms-background-size: 100%;
     background-size: 100%;
 }
@@ -1249,4 +1252,72 @@ a.list-group-item, button.list-group-item {
     padding-top: 40px;
     font-size: 14px;
     text-transform: uppercase;
+}
+
+/*----------- Page details ----------*/
+
+.page-cover-img {
+    width: 100%;
+    max-height: 155px;
+}
+
+.page-cover-img-container {
+    max-height: 155px;
+    min-height: 155px;
+}
+
+.page-profile-img-container {
+    position: absolute;
+    bottom: 31%;
+    left: 5%;
+    padding: 3px;
+    border: 1px solid #acacac;
+    background-color: #fff;
+    border-radius: 3%;
+}
+
+.image-container {
+    width: 110px;
+    height: 110px;
+    border: 1px solid #acacac;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+}
+
+.page-title-container {
+    position: absolute;
+    bottom: 48%;
+    left: 36%;
+    background-color: black;
+    padding: 10px;
+}
+
+.page-title {
+    color: #fff;
+    text-rendering: optimizelegibility;
+    text-shadow: 0 0 3px rgba(0,0,0,.8);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.page-info-value {
+    padding: 5px 5px 5px 15px;
+    margin-bottom: 5px;
+}
+
+.page-info-wall {
+    height: 123px;
+    padding-left: 37%;
+}
+.wall-item {
+    padding-top: 5px;
+}
+
+.feed-table tr:hover {
+    cursor: pointer;
+    background-color: #f7f7f7;
 }

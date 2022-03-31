@@ -13,39 +13,39 @@
     </property>
 
     <property name="Link" access="field.camelcase-underscore">
-      <column name="Link" sql-type="nvarchar" length="1000" not-null="true"/>
+      <column name="Link" sql-type="nvarchar" length="1000" not-null="false"/>
     </property>
 
     <property name="PostPicture" access="field.camelcase-underscore">
-      <column name="PostPicture" sql-type="nvarchar" length="1000" not-null="true"/>
+      <column name="PostPicture" sql-type="nvarchar" length="1000" not-null="false"/>
     </property>
-    
+
     <property name="Message" access="field.camelcase-underscore">
-      <column name="Message" sql-type="nvarchar" length="500" not-null="false"/>
+      <column name="Message" sql-type="nvarchar" length="1000000" not-null="false"/>
     </property>
 
     <property name="Type" access="field.camelcase-underscore">
-      <column name="Type" sql-type="nvarchar" length="100" not-null="true"/>
+      <column name="Type" sql-type="nvarchar" length="100" not-null="false"/>
     </property>
 
     <property name="PostName" access="field.camelcase-underscore">
-      <column name="PostName" sql-type="nvarchar" length="500" not-null="true"/>
+      <column name="PostName" sql-type="nvarchar" length="500" not-null="false"/>
     </property>
 
     <property name="FbCreatedTime" access="field.camelcase-underscore">
-      <column name="FbCreatedTime" sql-type="nvarchar" length="100" not-null="true"/>
+      <column name="FbCreatedTime" sql-type="nvarchar" length="100" not-null="false"/>
     </property>
 
     <property name="FbUpdatedTime" access="field.camelcase-underscore">
-      <column name="FbUpdatedTime" sql-type="nvarchar" length="100" not-null="true"/>
+      <column name="FbUpdatedTime" sql-type="nvarchar" length="100" not-null="false"/>
     </property>
 
     <property name="TimeCreaded" access="field.camelcase-underscore">
-      <column name="TimeCreaded" sql-type="datetime" not-null="true"/>
+      <column name="TimeCreaded" sql-type="datetime" not-null="false"/>
     </property>
 
     <property name="TimeUpdated" access="field.camelcase-underscore">
-      <column name="TimeUpdated" sql-type="datetime" not-null="true"/>
+      <column name="TimeUpdated" sql-type="datetime" not-null="false"/>
     </property>
 
     <property name="Shares" access="field.camelcase-underscore">
@@ -69,5 +69,12 @@
     </property>
 
   </class>
-
+  <sql-query name="PageFeedGroupedByHourAndType">
+    exec  [dbo].[PageFeedGroupedByHourAndType]
+    @pageId = :pageId,
+    @dateFrom = :dateFrom,
+    @dateTo = :dateTo,
+    @postType = :postType,
+    @year = :year
+  </sql-query>
 </hibernate-mapping>

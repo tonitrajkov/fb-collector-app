@@ -10,27 +10,27 @@ fbcApp.factory("mainService", [
             },
 
             getLanguage: function (callBack) {
-                //var url = "/Base/LoadLanguage";
-                //repository.syncAjax(baseUrl + url, null, function (response) {
-                //    callBack(response);
-                //}, function (response) {
-                //    console.log(response);
-                //});
+                var url = "/Home/LoadLanguage";
+                repository.syncAjax(baseUrl + url, null, function (response) {
+                    callBack(response);
+                }, function (response) {
+                    console.log(response);
+                });
             },
 
             changeLanguage: function (data) {
-                //var url = "/Base/ChangeLanguage";
-                //var result = repository.promisePost(url, data);
-                //return result;
+                var url = "/Home/ChangeLanguage";
+                var result = repository.promisePost(url, data);
+                return result;
             },
 
             getSupportedLanguages: function (callBack) {
-                //var url = "/Base/GetSupportedLanguages";
-                //repository.syncAjax(baseUrl + url, null, function (response) {
-                //    callBack(response);
-                //}, function (response) {
-                //    console.log(response);
-                //});
+                var url = "/Home/GetSupportedLanguages";
+                repository.syncAjax(baseUrl + url, null, function (response) {
+                    callBack(response);
+                }, function (response) {
+                    console.log(response);
+                });
             },
 
             getLoggedInUserInfo: function (callBack) {
@@ -59,6 +59,12 @@ fbcApp.factory("mainService", [
                 //var url = "/Home/CheckForUnseenNotifications";
                 //var result = repository.promisePost(url, null);
                 //return result;
+            },
+
+            getPagesFiltered: function (data) {
+                var url = "/Page/GetPagesFiltered";
+                var result = repository.promisePost(url, data);
+                return result;
             },
 
             createPageFeed: function (data) {

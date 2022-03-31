@@ -1,4 +1,6 @@
-﻿namespace FbCollector.Models
+﻿using System;
+
+namespace FbCollector.Models
 {
     public class SearchModel
     {
@@ -18,10 +20,28 @@
     public class PageSearchModel : SearchModel
     {
         public string SearchText { get; set; }
+
+        public int? Importance { get; set; }
     }
 
     public class PageFeedSearchModel : SearchModel
     {
+        public string PageUrlId { get; set; }
+
         public string SearchText { get; set; }
+
+        public bool? IsUsed { get; set; }
+
+        public string Type { get; set; }
+
+        public DateTime? DateFrom { get; set; }
+
+        public DateTime? DateTo { get; set; }
+
+        public bool OrderDescending { get; set; }
+
+        public int? SharesNumber { get; set; }
+
+        public int? Year { get; set; }
     }
 }

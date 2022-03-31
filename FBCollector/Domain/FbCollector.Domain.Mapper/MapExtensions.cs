@@ -80,7 +80,9 @@ namespace FbCollector.Domain.Mapper
                 UrlId = page.UrlId,
                 FbType = page.FbType,
                 Url = page.Url,
-                FbId = page.FbId
+                FbId = page.FbId,
+                Importance = page.Importance,
+                ProfilePicture = page.ProfilePicture
             };
 
             return model;
@@ -106,6 +108,30 @@ namespace FbCollector.Domain.Mapper
                 Link = feed.Link,
                 DateUsed = feed.DateUsed,
                 IsUsed = feed.IsUsed
+            };
+
+            return model;
+        }
+
+        public static LocalizationModel ToModel(this Localization loc)
+        {
+            var model = new LocalizationModel
+            {
+                Key = loc.Key,
+                Value = loc.Value
+            };
+
+            return model;
+        }
+
+        public static LanguageModel ToModel(this Language lan)
+        {
+            var model = new LanguageModel
+            {
+                Id = lan.Id,
+                Title = lan.Title,
+                Code = lan.Code,
+                IsDefault = lan.IsDefault
             };
 
             return model;

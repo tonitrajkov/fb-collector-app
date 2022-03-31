@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigureValidators.cs" />
+    <Compile Include="PageModelValidator.cs" />
     <Compile Include="ValidationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

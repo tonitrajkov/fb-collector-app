@@ -40,13 +40,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangePasswordModel.cs" />
+    <Compile Include="FbModels\FbAccessTokenModel.cs" />
+    <Compile Include="FbModels\FbFeedModel.cs" />
+    <Compile Include="FbModels\FbFeedResponseModel.cs" />
+    <Compile Include="FbModels\FbPageModel.cs" />
+    <Compile Include="FbModels\FbPagingModel.cs" />
+    <Compile Include="ImportanceLevel.cs" />
+    <Compile Include="LanguageModel.cs" />
+    <Compile Include="LocalizationModel.cs" />
     <Compile Include="LoggedInUserInfo.cs" />
     <Compile Include="LoginModel.cs" />
+    <Compile Include="PageFeedChartModel.cs" />
     <Compile Include="PageFeedModel.cs" />
     <Compile Include="PageModel.cs" />
     <Compile Include="RoleModel.cs" />
     <Compile Include="SearchModel.cs" />
     <Compile Include="SearchResult.cs" />
+    <Compile Include="SystemLanguage.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

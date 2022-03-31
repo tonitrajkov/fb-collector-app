@@ -1,0 +1,84 @@
+﻿<md-dialog aria-label="Course Modal">
+    <form ng-cloak name="courseForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="white-color">{{modalTitle}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        {{"CLOSE" | translate}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <md-input-container style="padding-bottom: 27px;" class="md-icon-float md-block"
+                                    ng-class="(model.Importance != null && model.Errors.Importance) ? 'md-input-invalid' : ''">
+                    <label>{{"IMPORTANCE_LEVEL" | translate}}</label>
+                    <md-select ng-model="model.Importance" required>
+                        <md-option ng-value="level.Key" ng-repeat="level in levels">{{level.Value}}</md-option>
+                    </md-select>
+                    <div ng-if="model.Errors.Importance" class="error-msg">
+                        {{model.Errors.Importance}}
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block"
+                                    ng-class="(model.Errors != null && model.Errors.Title) ? 'md-input-invalid' : ''">
+                    <label>{{"TITLE" | translate}}</label>
+                    <input required name="title" ng-model="model.Title" type="text">
+                    <div ng-if="model.Errors.Title" class="error-msg">
+                        {{model.Errors.Title}}
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block"
+                                    ng-class="(model.Errors != null && model.Errors.Url) ? 'md-input-invalid' : ''">
+                    <label>{{"URL" | translate}}</label>
+                    <input required name="url" ng-model="model.Url" type="text">
+                    <div ng-if="model.Errors.Url" class="error-msg">
+                        {{model.Errors.Url}}
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block"
+                                    ng-class="(model.Errors != null && model.Errors.UrlId) ? 'md-input-invalid' : ''">
+                    <label>{{"URL_ID" | translate}}</label>
+                    <input required name="urlId" ng-model="model.UrlId" type="text">
+                    <div ng-if="model.Errors.Url" class="error-msg">
+                        {{model.Errors.UrlId}}
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block">
+                    <label>{{"PROFILE_PICTURE_URL" | translate}}</label>
+                    <input name="profilePicture" ng-model="model.ProfilePicture" type="text">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block">
+                    <label>{{"FB_ID" | translate}}</label>
+                    <input name="fbId" ng-model="model.FbId" type="text">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block">
+                    <label>{{"FB_TYPE" | translate}}</label>
+                    <input name="fbType" ng-model="model.FbType" type="text">
+                </md-input-container>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary white-color" ng-click="confirm(passwordForm)">
+                {{"MODAL_CONFIRM_BUTTON" | translate}}
+            </md-button>
+            <md-button class="md-raised" ng-click="cancel()">
+                {{"MODAL_CANCEL_BUTTON" | translate}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

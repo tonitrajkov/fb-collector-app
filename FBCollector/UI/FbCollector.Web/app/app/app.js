@@ -8,20 +8,22 @@ var fbcApp = angular.module("fbcApp",
      "ngImgCrop",
      "materialCalendar",
      "mdPickers",
-     "ngScrollbars"])
+     "ngScrollbars",
+     "ngStorage",
+     "chart.js"])
     .config(["$stateProvider", "$urlRouterProvider", "$mdThemingProvider", "$httpProvider",
         function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
-           // $httpProvider.interceptors.push("UnauthorizedExceptionInterceptor");
+            // $httpProvider.interceptors.push("UnauthorizedExceptionInterceptor");
 
             //theming
             $mdThemingProvider.theme("default")
-                .primaryPalette("amber")
+                .primaryPalette("indigo")
                 .accentPalette("pink");
 
             $urlRouterProvider.otherwise("/home");
 
-            $urlRouterProvider.when("/configuration", "/configuration/users");
+            $urlRouterProvider.when("/configuration", "/configuration/pages");
 
             //States
             $stateProvider
@@ -30,14 +32,25 @@ var fbcApp = angular.module("fbcApp",
                     views: {
                         'mainView': {
                             templateUrl: "app/partials/home/home.html",
-                            controller: "courseController"
+                            controller: "pagesHomeController"
                         }
                     },
                     data: {
                         displayName: "HOME"
                     }
                 })
-
+                .state("pageDetails", {
+                    url: "/page/{pageId:int}",
+                    views: {
+                        'mainView': {
+                            templateUrl: "app/partials/page/page-details.html",
+                            controller: "pageDetailsController"
+                        }
+                    },
+                    data: {
+                        displayName: "PAGE"
+                    }
+                })
                 .state("configuration", {
                     url: "/configuration",
                     views: {
@@ -63,17 +76,29 @@ var fbcApp = angular.module("fbcApp",
                         displayName: "USERS"
                     }
                 })
-                .state("cfgCourses", {
-                    url: "/courses",
+                .state("cfgPages", {
+                    url: "/pages",
                     views: {
                         'configView': {
-                            templateUrl: "app/partials/configuration/courses.html",
-                            controller: "coursesController"
+                            templateUrl: "app/partials/configuration/pages.html",
+                            controller: "pagesController"
                         }
                     },
                     parent: "configuration",
                     data: {
                         displayName: "COURSES_TAB_LABEL"
+                    }
+                })
+                .state("charts", {
+                    url: "/charts",
+                    views: {
+                        'mainView': {
+                            templateUrl: "app/partials/charts/charts.html",
+                            controller: "chartController"
+                        }
+                    },
+                    data: {
+                        displayName: "CHARTS"
                     }
                 })
              .state("notFound", {
@@ -114,6 +139,25 @@ fbcApp.factory("toastFactory", [
         };
     }
 ]);
+
+fbcApp.factory("modalFactory", [
+    "$mdDialog", function ($mdDialog) {
+        return {
+            confrimation: function (ev, title, message, callback) {
+                $mdDialog.show({
+                    locals: { title: title, msg: message },
+                    controller: "confirmationModalController",
+                    templateUrl: "app/partials/home/confrimation-modal.html",
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                }).then(callback);
+            }
+        };
+    }
+]);
+
 
 fbcApp.factory("UnauthorizedExceptionInterceptor",
 [

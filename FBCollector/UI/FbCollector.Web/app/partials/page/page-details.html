@@ -1,0 +1,262 @@
+﻿<div layout="row" flex>
+    <div flex="33">
+        <!-- Page Cover -->
+        <md-card>
+            <md-card-content style="padding: 0 !important;">
+                <div style="position: relative">
+                    <div class="page-cover-img-container">
+                        <img ng-src="{{fbPageDetails.cover.source}}" class="page-cover-img" />
+                    </div>
+                    <div class="page-info-wall">
+                        <div class="wall-item">
+                            <span>{{'LIKES' | translate}}:</span> {{pageLikes | number}}
+                        </div>
+                        <div class="wall-item">
+                            <span>{{'TALKING_ABOUT' | translate}}:</span>{{fbPageDetails.talking_about_count | number}}
+                        </div>
+                    </div>
+
+                    <div class="page-title-container">
+                        <a href="{{fbPageDetails.link}}" target="_blank">
+                            <span class="page-title">{{page.Title}}</span>
+                        </a>
+                    </div>
+                    <div class="page-profile-img-container">
+                        <div class="image-container">
+                            <img ng-src="{{page.ProfilePicture}}" class="profile-img" />
+                        </div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div flex="33">
+        <!-- Page Info -->
+        <md-card style="height: 278px;">
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"PAGE_INFO" | translate}}
+                        </h2>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div style="display: table-cell">
+                    <div style="float: left; margin-top: -2px">
+                        <ng-md-icon icon="info" style="fill: #acacac" size="18"></ng-md-icon>
+                    </div>
+                    <div style="float: left;"> {{"ABOUT" | translate}}</div>
+                </div>
+                <div class="page-info-value">
+                    {{fbPageDetails.about}}
+                </div>
+
+                <div style="display: table-cell">
+                    <div style="float: left; margin-top: -2px">
+                        <ng-md-icon icon="toys" style="fill: #acacac" size="18"></ng-md-icon>
+                    </div>
+                    <div style="float: left;"> {{"CATEGORY" | translate}}</div>
+                </div>
+                <div class="page-info-value">
+                    {{fbPageDetails.category}}
+                </div>
+
+                <div style="display: table-cell">
+                    <div style="float: left; margin-top: -2px">
+                        <ng-md-icon icon="public" style="fill: #acacac" size="18"></ng-md-icon>
+                    </div>
+                    <div style="float: left;"> {{"WEBSITE" | translate}}</div>
+                </div>
+                <div class="page-info-value">
+                    <a target="_blank" href="{{fbPageDetails.website}}">{{fbPageDetails.website}}</a>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <div flex="33">
+        <!-- Page fans -->
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"PAGE_FANS" | translate}}
+                        </h2>
+                    </div>
+                </md-card-title-text>
+                <span flex></span>
+                <a href="" style="margin-top:-10px" class="md-icon-button" ng-click="fansModal($event)">
+                    <md-tooltip md-direction="bottom">
+                        {{"SHOW_ORDERED_LIST" | translate}}
+                    </md-tooltip>
+                    <ng-md-icon icon="format_list_numbered"
+                                style="fill: #868686; margin-bottom: -10px" size="24"></ng-md-icon>
+                </a>
+            </md-card-title>
+            <md-card-content>
+                <md-list>
+                    <canvas id="pie" class="chart chart-pie"
+                            chart-data="data" chart-labels="labels" chart-options="options"></canvas>
+                </md-list>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+
+
+<!-- Page Feeds-->
+
+<div style="padding: 15px 8px">
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <span> {{"FEEDS" | translate}}</span>
+
+            <span flex></span>
+            <md-progress-circular style="padding-left:40%" ng-show="showSpinner" class="md-accent" md-diameter="30"></md-progress-circular>
+            <md-button class="md-icon-button" ng-click="reloadTable()">
+                <md-tooltip md-direction="bottom">
+                    {{"RESET_FILTERS_LABEL" | translate}}
+                </md-tooltip>
+                <ng-md-icon icon="refresh" style="fill: #868686" size="24"></ng-md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="showFilters = !showFilters">
+                <md-tooltip md-direction="bottom">
+                    {{"SHOW_FILTERS_LABEL" | translate}}
+                </md-tooltip>
+                <ng-md-icon icon="filter_list" style="fill: #868686" size="24"></ng-md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="syncPageFeed()">
+                <md-tooltip md-direction="bottom">
+                    {{"SYNC_WITH_FB" | translate}}
+                </md-tooltip>
+                <ng-md-icon icon="sync" style="fill: #868686" size="24"></ng-md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="reindexFeedImages()">
+                <md-tooltip md-direction="bottom">
+                    {{"REINDEX_IMAGES" | translate}}
+                </md-tooltip>
+                <ng-md-icon icon="broken_image" style="fill: #868686" size="24"></ng-md-icon>
+            </md-button>
+        </div>
+        <div class="md-toolbar-tools" ng-show="showFilters" style="border-top: 1px solid #E6E6E6; font-size: 15px; padding:30px 24px ">
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <md-input-container md-no-float class="md-block" style="padding: 0 20px 0 40px;">
+                            <input ng-model="query.SearchText" style="min-width: 220px; margin-top: 17px" aria-label="Search Input"
+                                   ng-model-options="{ debounce: 300 }" placeholder="{{'SEARCH_BY_TITLE_LABEL' | translate}}">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-datepicker ng-model="query.DateFrom"
+                                       md-max-date="query.DateTo"
+                                       md-placeholder="Date From"></md-datepicker>
+                    </td>
+                    <td>
+                        <md-datepicker ng-model="query.DateTo"
+                                       md-min-date="query.DateFrom"
+                                       md-placeholder="Date To"></md-datepicker>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <md-select ng-model="query.Type" style="min-width: 140px; padding-left:20px" aria-label="Levels">
+                                <md-option ng-value="null"><em>- {{"ALL_TYPES" | translate}} -</em></md-option>
+                                <md-option ng-value="'link'">Link</md-option>
+                                <md-option ng-value="'photo'">Photo</md-option>
+                                <md-option ng-value="'video'">Video</md-option>
+                                <md-option ng-value="'event'">Event</md-option>
+                                <md-option ng-value="'status'">Status</md-option>
+                                <md-option ng-value="'note'">Note</md-option>
+                                <md-option ng-value="'offer'">Offer</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-switch ng-model="query.IsUsed" aria-label="Used" style="padding-left: 20px">
+                            <span ng-if="query.IsUsed == null">{{"ALL_FEEDS" | translate}}</span>
+                            <span ng-if="query.IsUsed == true">{{"USED_FEEDS" | translate}}</span>
+                            <span ng-if="query.IsUsed == false">{{"UNUSED_FEEDS" | translate}}</span>
+                        </md-switch>
+                    </td>
+                    <td>
+                        <md-switch ng-model="query.OrderDescending" aria-label="Used" style="padding-left: 20px">
+                            <span ng-if="query.OrderDescending == true">{{"DESCENDING" | translate}}</span>
+                            <span ng-if="query.OrderDescending == false">{{"ASCENDING" | translate}}</span>
+                        </md-switch>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </md-toolbar>
+    <md-table-container>
+        <table data-md-table md-progress="promise" class="feed-table">
+            <thead ng-if="!options.decapitate" md-head md-on-reorder="onReorder">
+                <tr md-row>
+                    <th md-column style="width: 48%"><span>{{"MESSAGE" | translate}}</span></th>
+                    <th md-column style="width: 48%"><span>{{"TIME" | translate}}</span></th>
+                    <th md-column style="width: 1%"><span>{{"TYPE" | translate}}</span></th>
+                    <th md-column style="width: 1%; text-align: center"><span>{{"ACTIONS_LABEL" | translate}}</span></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row data-ng-repeat="feed in feeds" ng-click="openFeedModal($event, feed)">
+                    <td md-cell style="width: 48%">
+                        {{feed.Message | truncateTitle:200 }}
+                    </td>
+                    <td md-cell style="width: 48%">
+                        <table class="table-full-width">
+                            <tr>
+                                <td style="width: 90%">
+                                    <table class="table-full-width">
+                                        <tr>
+                                            <td style="width: 145px">
+                                                <span style="font-weight: bold">
+                                                    {{"FB_CREATED_TIME" | translate}}
+                                                </span>
+                                            </td>
+                                            <td>{{feed.FbCreatedTime}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 145px">
+                                                <span style="font-weight: bold">
+                                                    {{"CREATED_TIME" | translate}}
+                                                </span>
+                                            </td>
+                                            <td>{{feed.TimeCreaded | formatJsonDateTime}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="width: 10%; text-align: center">
+                                    {{feed.TimeCreaded | weekDayFromJsonDateTime}}
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                    <td md-cell style="width: 1%; text-align: center">
+                        {{feed.Type}}
+                    </td>
+                    <td md-cell style="width: 1%; text-align: center">
+                        <md-button class="md-icon-button" ng-click="openFeedModal($event, feed)">
+                            <md-tooltip md-direction="bottom">
+                                {{"FEED_DETAILS_LABEL" | translate}}
+                            </md-tooltip>
+                            <ng-md-icon icon="dehaze" style="fill: #868686"></ng-md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <data-md-table-pagination md-limit="query.ItemsPerPage"
+                              md-limit-options="limitOptions"
+                              md-page="query.CurrentPage"
+                              md-total="{{totalRecords}}"
+                              md-on-paginate="onPaginate"
+                              md-page-select="options.pageSelect"
+                              md-boundary-links="options.boundaryLinks">
+    </data-md-table-pagination>
+</div>

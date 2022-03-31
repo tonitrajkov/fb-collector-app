@@ -22,9 +22,9 @@ namespace FbCollector.Models
 
         public string FbUpdatedTime { get; set; }
 
-        public DateTime TimeCreaded { get; set; }
+        public DateTime? TimeCreaded { get; set; }
 
-        public DateTime TimeUpdated { get; set; }
+        public DateTime? TimeUpdated { get; set; }
 
         public int Shares { get; set; }
 

@@ -26,15 +26,17 @@ namespace FbCollector.Services
             var page = _pageRepository.Query()
                 .FirstOrDefault(p => p.UrlId.ToLower() == model.UrlId.ToLower());
 
-            if(page != null)
+            if (page != null)
                 throw new FbException("PAGE_ALREDY_EXISTS");
 
-            var domain = new Page(model.Title, model.Url, model.UrlId);
+            var domain = new Page(model.Title, model.Url, model.UrlId, model.Importance);
 
-            if (!string.IsNullOrEmpty(domain.FbType))
+            if (!string.IsNullOrEmpty(model.FbType))
                 domain.FbType = model.FbType;
-            if (!string.IsNullOrEmpty(domain.FbId))
+            if (!string.IsNullOrEmpty(model.FbId))
                 domain.FbId = model.FbId;
+            if (!string.IsNullOrEmpty(model.ProfilePicture))
+                domain.ProfilePicture = model.ProfilePicture;
 
             _pageRepository.Save(domain);
         }
@@ -50,7 +52,9 @@ namespace FbCollector.Services
             page.UrlId = model.UrlId;
             page.Url = model.Url;
             page.Title = model.Title;
-            
+            page.Importance = model.Importance;
+            page.ProfilePicture = model.ProfilePicture;
+
             _pageRepository.Update(page);
         }
 
@@ -89,12 +93,17 @@ namespace FbCollector.Services
                                .Or(x => x.UrlId.ToLower().Contains(model.SearchText.Trim().ToLower()));
             }
 
+            if (model.Importance.HasValue)
+            {
+                filter = filter.And(x => x.Importance == model.Importance.Value);
+            }
+
             query = query.Where(filter);
 
             var totalItems = query.Count();
 
             var start = (model.CurrentPage - 1) * model.ItemsPerPage;
-            var finalQuery = query.OrderBy(x => x.DateCreated).Skip(start).Take(model.ItemsPerPage);
+            var finalQuery = query.OrderBy(x => x.Importance).Skip(start).Take(model.ItemsPerPage);
 
             var result = new SearchResult<PageModel>
             {
@@ -108,6 +117,15 @@ namespace FbCollector.Services
             }
 
             return result;
+        }
+
+        public PageModel GetPageById(int pageId)
+        {
+            var page = _pageRepository.Get(pageId);
+            if (page == null)
+                throw new FbException("PAGE_DOESNT_EXISTS");
+
+            return page.ToModel();
         }
     }
 }

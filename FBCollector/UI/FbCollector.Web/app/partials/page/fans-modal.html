@@ -1,0 +1,35 @@
+﻿<md-dialog aria-label="Sync Facebook Modal">
+    <form ng-cloak name="fbForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 class="white-color">{{"FANS_MODAL_TITLE" | translate}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="confirm()">
+                    <ng-md-icon icon="close" style="fill: #fff" size="20"></ng-md-icon>
+                    <md-tooltip md-direction="bottom">
+                        {{"CLOSE_TOASTER" | translate}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-list>
+                    <md-list-item style="min-height: 30px; height: 30px" class="md-2-line" 
+                                  ng-repeat="fan in fans | orderBy:'fan.number'">
+                        <div class="md-list-item-text">
+                            <p>{{$index + 1}}. {{fan.name}} : {{fan.number}}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary white-color" ng-click="confirm()">
+                {{"MODAL_CONFIRM_BUTTON" | translate}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

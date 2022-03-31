@@ -7,7 +7,7 @@
     <authors>NHibernate community, Hibernate community</authors>
     <owners>NHibernate community, Hibernate community</owners>
     <licenseUrl>https://raw.github.com/nhibernate/nhibernate-core/master/lgpl.txt</licenseUrl>
-    <projectUrl>http://nhibernate.info/</projectUrl>
+    <projectUrl>http://nhibernate.info</projectUrl>
     <iconUrl>https://raw.github.com/nhibernate/nhibernate-core/master/logo/NHibernate-NuGet.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>NHibernate is a mature, open source object-relational mapper for the .NET framework. It is actively developed, fully featured and used in thousands of successful projects.</description>

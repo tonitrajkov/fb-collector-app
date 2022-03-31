@@ -10,6 +10,8 @@ namespace FbCollector.Domain
         private string _fbId;
         private string _fbType;
         private DateTime _dateCreated;
+        private int _importance;
+        private string _profilePicture;
 
         #region Properties
 
@@ -83,6 +85,24 @@ namespace FbCollector.Domain
             set { _dateCreated = value; }
         }
 
+        public virtual int Importance
+        {
+            get { return _importance; }
+            set { _importance = value; }
+        }
+
+        public virtual string ProfilePicture
+        {
+            get { return _profilePicture; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value) && value.Length > 1000)
+                    throw new ArgumentOutOfRangeException("value");
+
+                _profilePicture = value;
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -91,11 +111,12 @@ namespace FbCollector.Domain
         {
         }
 
-        public Page(string title, string url, string urlId)
+        public Page(string title, string url, string urlId, int importance)
         {
             _title = title;
             _url = url;
             _urlId = urlId;
+            _importance = importance;
             _dateCreated = DateTime.Now;
         }
 

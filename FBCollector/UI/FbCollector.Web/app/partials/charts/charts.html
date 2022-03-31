@@ -1,0 +1,148 @@
+﻿<div class="block-header">
+    <h2>{{"CHARTS" | translate}}</h2>
+</div>
+
+<div>
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <div class="card-header">
+                    <h2>
+                        {{"RECENT_REPLIES" | translate}}
+                        <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
+                    </h2>
+                </div>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <canvas id="bar" class="chart chart-bar"
+                    chart-data="data1" chart-labels="labels1" chart-series="series1"
+                    chart-colors="colors11">
+                chart-series="series1"
+            </canvas>
+        </md-card-content>
+    </md-card>
+</div>
+<div layout="row" flex>
+    <div flex="50">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"COURSE_CONTENT" | translate}}
+                            <small>{{"COURSE_CONTENT_DESCRIPTION" | translate}}</small>
+                        </h2>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <canvas id="doughnut" class="chart chart-doughnut"
+                        chart-data="data" chart-labels="labels"></canvas> 
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <div flex="50">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"RECENT_REPLIES" | translate}}
+                            <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
+                        </h2>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <!--<canvas id="bar" class="chart chart-bar"
+                        chart-data="data1" chart-labels="labels1">
+                    chart-series="series1"
+                </canvas>-->
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+
+
+<div layout="row" flex>
+    <div flex="50">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"COURSE_CONTENT" | translate}}
+                            <small>{{"COURSE_CONTENT_DESCRIPTION" | translate}}</small>
+                        </h2>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <canvas id="base2" class="chart-bubble" chart-data="data3"
+                        chart-series="series3"></canvas> 
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <div flex="50">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"RECENT_REPLIES" | translate}}
+                            <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
+                        </h2>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <canvas id="polar-area" class="chart chart-polar-area"
+                        chart-data="data2" chart-labels="labels2" chart-options="options"></canvas> 
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+
+<div layout="row" flex>
+    <div flex="50">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"COURSE_CONTENT" | translate}}
+                            <small>{{"COURSE_CONTENT_DESCRIPTION" | translate}}</small>
+                        </h2>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <canvas id="base4" class="chart-base" chart-type="type4"
+                        chart-data="data4" chart-labels="labels4"></canvas> 
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <div flex="50">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <div class="card-header">
+                        <h2>
+                            {{"RECENT_REPLIES" | translate}}
+                            <small>{{"RECENT_REPLIES_COURSE_DESCRIPTION" | translate}}</small>
+                        </h2>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <canvas id="base5" class="chart-bar"
+                        chart-data="data5" chart-labels="labels5" chart-colors="colors5"
+                        chart-dataset-override="datasetOverride"></canvas> 
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
